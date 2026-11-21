@@ -147,23 +147,25 @@
 
 @media all {
   .motion-ready .hero-copy > * {
-    animation: hero-arrive 0.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    animation: hero-arrive 1s var(--hero-entry-offset, 0s)
+      cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready .hero-copy > :nth-child(2) {
-    animation-delay: 0.08s;
+    animation-delay: calc(var(--hero-entry-offset, 0s) + 0.08s);
   }
   .motion-ready .hero-copy > :nth-child(3) {
-    animation-delay: 0.18s;
+    animation-delay: calc(var(--hero-entry-offset, 0s) + 0.18s);
   }
   .motion-ready .hero-copy > :nth-child(4) {
-    animation-delay: 0.28s;
+    animation-delay: calc(var(--hero-entry-offset, 0s) + 0.28s);
   }
   .motion-ready .hero-copy > :nth-child(5) {
-    animation-delay: 0.38s;
+    animation-delay: calc(var(--hero-entry-offset, 0s) + 0.38s);
   }
   .motion-ready .hero-visual,
   .motion-ready .about-emblem {
-    animation: scene-arrive 1s 0.15s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    animation: scene-arrive 1.2s calc(var(--hero-entry-offset, 0s) + 0.2s)
+      cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready .reveal {
     transition:
@@ -304,25 +306,54 @@ main {
   place-items: center;
   pointer-events: none;
   visibility: hidden;
-  background: var(--ink);
   color: var(--accent);
-  border-bottom: 12px solid var(--accent);
-  transform: translateY(105%);
 }
-.page-curtain > span {
+.curtain-layer {
+  position: absolute;
+  inset: 0;
+}
+.curtain-lime {
+  background: var(--accent);
+}
+.curtain-ink {
+  background: var(--ink);
+}
+.curtain-brand {
+  position: relative;
+  width: fit-content;
+}
+.curtain-lockup {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: clamp(14px, 2.5vw, 30px);
+}
+.curtain-symbol {
+  width: clamp(52px, 8vw, 100px);
+  height: auto;
+  overflow: visible;
+}
+.curtain-piece {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.curtain-word {
+  display: block;
+  overflow: hidden;
+}
+.curtain-word > span {
+  display: block;
   font-family: var(--body);
-  font-size: clamp(36px, 7vw, 80px);
+  font-size: clamp(38px, 7vw, 88px);
+  line-height: 1.2;
   font-weight: 700;
   letter-spacing: -0.055em;
 }
-.curtain-dot {
-  width: 0.2em;
-  height: 0.2em;
-  background: currentColor;
-  border-radius: 50%;
+.curtain-rule {
+  display: block;
+  height: 1px;
+  margin-top: 24px;
+  background: linear-gradient(90deg, var(--accent), #d1f56820);
+  transform-origin: left;
 }
 .motion-section {
   position: relative;
@@ -393,14 +424,42 @@ main {
   transform: rotate(-45deg);
 }
 @media all {
-  .motion-ready.page-entering .page-curtain {
-    animation: curtain-enter 0.75s cubic-bezier(0.76, 0, 0.24, 1) both;
-  }
+  .motion-ready.page-entering .page-curtain,
   .motion-ready.page-leaving .page-curtain {
-    animation: curtain-exit 0.32s cubic-bezier(0.76, 0, 0.24, 1) both;
+    visibility: visible;
+  }
+  .motion-ready.page-entering .curtain-ink {
+    animation: intro-ink-lift 1s 0.9s cubic-bezier(0.76, 0, 0.24, 1) both;
+  }
+  .motion-ready.page-entering .curtain-lime {
+    animation: intro-lime-lift 1.05s 1.05s cubic-bezier(0.76, 0, 0.24, 1) both;
+  }
+  .motion-ready.page-entering .curtain-brand {
+    animation: intro-brand-away 0.45s 0.95s ease both;
+  }
+  .motion-ready.page-entering .curtain-piece-one {
+    animation: intro-piece-one 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .motion-ready.page-entering .curtain-piece-two {
+    animation: intro-piece-two 0.85s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .motion-ready.page-entering .curtain-word > span {
+    animation: intro-word 0.8s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .motion-ready.page-entering .curtain-rule {
+    animation: grow-line 0.8s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .motion-ready.page-leaving .curtain-layer {
+    animation: curtain-exit 0.45s cubic-bezier(0.76, 0, 0.24, 1) both;
+  }
+  .motion-ready.page-leaving .curtain-ink {
+    animation-delay: 0.07s;
+  }
+  .motion-ready.page-leaving .curtain-brand {
+    opacity: 0;
   }
   .motion-ready.page-leaving main {
-    animation: page-recede 0.34s ease both;
+    animation: page-recede 0.5s ease both;
   }
   .motion-ready .reveal {
     transition:
@@ -569,24 +628,69 @@ main {
     display: none;
   }
 }
-@keyframes curtain-enter {
-  0%,
-  12% {
-    visibility: visible;
+@keyframes intro-ink-lift {
+  from {
     transform: translateY(0);
   }
-  100% {
-    visibility: hidden;
-    transform: translateY(-105%);
+  to {
+    transform: translateY(-102%);
+  }
+}
+@keyframes intro-lime-lift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-102%);
+  }
+}
+@keyframes intro-brand-away {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-24px) scale(0.96);
+  }
+}
+@keyframes intro-piece-one {
+  from {
+    opacity: 0;
+    transform: translate(-16px, -12px) rotate(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+@keyframes intro-piece-two {
+  from {
+    opacity: 0;
+    transform: translate(16px, 12px) rotate(12deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+@keyframes intro-word {
+  from {
+    opacity: 0;
+    transform: translateY(105%);
+    letter-spacing: 0.08em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -0.055em;
   }
 }
 @keyframes curtain-exit {
   from {
-    visibility: visible;
-    transform: translateY(105%);
+    transform: translateY(102%);
   }
   to {
-    visibility: visible;
     transform: translateY(0);
   }
 }

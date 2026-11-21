@@ -225,18 +225,44 @@ syncMotion();
 const pageCurtain = document.createElement("div");
 pageCurtain.className = "page-curtain";
 pageCurtain.setAttribute("aria-hidden", "true");
-pageCurtain.innerHTML = '<span>COLVIA<span class="curtain-dot"></span></span>';
+pageCurtain.innerHTML = `
+  <div class="curtain-layer curtain-lime"></div>
+  <div class="curtain-layer curtain-ink"></div>
+  <div class="curtain-brand">
+    <div class="curtain-lockup">
+      <svg class="curtain-symbol" viewBox="0 0 64 64" fill="currentColor">
+        <g transform="rotate(90 32 32)">
+          <g class="curtain-piece curtain-piece-one"><path d="M5 29V18C5 10 10 5 18 5H59L38 26H29C18 26 15 38 5 43Z"/></g>
+          <g class="curtain-piece curtain-piece-two"><path d="M5 29V18C5 10 10 5 18 5H59L38 26H29C18 26 15 38 5 43Z" transform="rotate(180 32 32)"/></g>
+        </g>
+      </svg>
+      <span class="curtain-word"><span>COLVIA</span></span>
+    </div>
+    <span class="curtain-rule"></span>
+  </div>`;
 document.body.append(pageCurtain);
 let navigating = false;
 let navigationTimer;
+let entranceTimer;
 function enterPage() {
   clearTimeout(navigationTimer);
+  clearTimeout(entranceTimer);
   navigating = false;
   motionRoot.classList.remove("page-leaving", "page-entering");
   if (!motionEnabled()) return;
+  motionRoot.style.setProperty("--hero-entry-offset", "1.2s");
   motionRoot.classList.add("page-entering");
-  setTimeout(() => motionRoot.classList.remove("page-entering"), 850);
+  entranceTimer = setTimeout(
+    () => motionRoot.classList.remove("page-entering"),
+    2300,
+  );
 }
+pageCurtain.addEventListener("animationend", (event) => {
+  if (event.animationName === "intro-lime-lift") {
+    clearTimeout(entranceTimer);
+    motionRoot.classList.remove("page-entering");
+  }
+});
 enterPage();
 addEventListener("pageshow", (event) => {
   if (event.persisted) enterPage();
@@ -273,7 +299,8 @@ document.addEventListener("click", (event) => {
   event.preventDefault();
   if (navigating) return;
   navigating = true;
+  clearTimeout(entranceTimer);
   motionRoot.classList.remove("page-entering");
   motionRoot.classList.add("page-leaving");
-  navigationTimer = setTimeout(() => location.assign(destination.href), 340);
+  navigationTimer = setTimeout(() => location.assign(destination.href), 540);
 });
