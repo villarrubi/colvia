@@ -1,15 +1,15 @@
 .why-section {
-  background: var(--accent);
-  color: var(--ink);
+  background: #20251f;
+  color: #f5f7f0;
 }
 .why-section .eyebrow {
-  color: #31480f;
+  color: var(--accent);
 }
 .why-section .section-heading {
   align-items: end;
 }
 .why-section .section-heading > p {
-  color: #344324;
+  color: #c5cebb;
 }
 .why-section h2 {
   font-size: clamp(38px, 4.3vw, 64px);
@@ -23,6 +23,7 @@
   gap: clamp(30px, 5vw, 76px);
 }
 .why-direct {
+  border: 1px solid #ffffff1c;
   background: var(--ink);
   color: #f5f7f0;
   border-radius: 12px;
@@ -102,7 +103,7 @@
   grid-template-columns: 46px minmax(0, 1fr);
   gap: 22px;
   padding: 28px 0;
-  border-top: 1px solid #171a1740;
+  border-top: 1px solid #ffffff26;
 }
 .why-reason:first-child {
   padding-top: 8px;
@@ -112,12 +113,13 @@
   padding-bottom: 8px;
 }
 .why-icon {
+  color: var(--accent);
   width: 46px;
   height: 46px;
   transition: transform 0.4s ease;
 }
 .why-icon rect {
-  fill: var(--accent);
+  fill: #20251f;
 }
 .why-reason:hover .why-icon {
   transform: rotate(-7deg) scale(1.08);
@@ -127,7 +129,7 @@
   margin-bottom: 16px;
 }
 .why-reason p {
-  color: #344324;
+  color: #c5cebb;
   line-height: 1.8;
 }
 .why-benefit {
@@ -140,13 +142,13 @@
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(30px, 5vw, 76px);
-  border-top: 1px solid #171a1740;
+  border-top: 1px solid #ffffff26;
   margin-top: 48px;
   padding-top: 28px;
-  color: #344324;
+  color: #c5cebb;
 }
 .why-proof > span {
-  color: var(--ink);
+  color: #f5f7f0;
   font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -225,11 +227,12 @@
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(30px, 5vw, 76px);
-  border-top: 2px solid var(--ink);
+  border-top: 1px solid #ffffff38;
   margin-top: 64px;
   padding-top: 42px;
 }
 .why-local-label {
+  color: var(--accent);
   font-size: 0.875rem;
   letter-spacing: 0.06em;
   font-weight: 800;
@@ -243,7 +246,7 @@
   display: block;
 }
 .why-local-copy p {
-  color: #344324;
+  color: #c5cebb;
   margin-bottom: 20px;
   line-height: 1.8;
 }
