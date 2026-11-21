@@ -1,8 +1,6 @@
 // Progressive motion: content and navigation remain complete without this file.
 const motionRoot = document.documentElement;
-const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-const motionButtons = document.querySelectorAll(".motion-toggle");
 // Give lists their own rhythm instead of revealing a whole block at once.
 document
   .querySelectorAll(
@@ -10,24 +8,8 @@ document
   )
   .forEach((element) => element.classList.add("reveal"));
 const revealElements = document.querySelectorAll(".reveal");
-let motionPaused = false;
-let motionChoice = null;
-try {
-  motionChoice = sessionStorage.getItem("colvia-motion-choice");
-} catch {}
-const requestedMotion = new URLSearchParams(location.search).get("motion");
-if (requestedMotion === "on" || requestedMotion === "off") {
-  motionChoice = requestedMotion;
-  try {
-    sessionStorage.setItem("colvia-motion-choice", motionChoice);
-  } catch {}
-}
-const motionEnabled = () =>
-  motionChoice === "on" ||
-  (motionChoice !== "off" && !motionPreference.matches);
-// Keep the switch reachable even when the OS requests reduced motion. Move it
-// outside animated ancestors so position:fixed really follows the viewport.
-motionButtons.forEach((button) => document.body.append(button));
+// Motion is always enabled on each page, including old links and sessions.
+motionRoot.classList.add("motion-force", "motion-ready");
 
 function reveal(element) {
   element.classList.remove("will-reveal");
@@ -39,7 +21,7 @@ const revealObserver =
     ? new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting || !motionEnabled()) {
+            if (entry.isIntersecting) {
               reveal(entry.target);
             } else if (!entry.target.contains(document.activeElement)) {
               entry.target.classList.add("will-reveal");
@@ -50,31 +32,6 @@ const revealObserver =
         { threshold: 0, rootMargin: "0px 0px -35px 0px" },
       )
     : null;
-
-function syncMotion() {
-  const enabled = motionEnabled();
-  motionPaused = !enabled;
-  motionRoot.classList.toggle("motion-force", motionChoice === "on");
-  motionRoot.classList.toggle("motion-ready", enabled);
-  motionRoot.classList.toggle("motion-paused", motionPaused);
-  motionButtons.forEach((button) => {
-    button.hidden = false;
-    button.textContent = motionPaused
-      ? "Activar animaciones"
-      : "Pausar animaciones";
-    button.setAttribute("aria-pressed", String(motionPaused));
-  });
-  if (!enabled || motionPaused) {
-    revealElements.forEach(reveal);
-    document
-      .querySelectorAll(".system-canvas, .experience-card, .founder-card")
-      .forEach((canvas) => {
-        canvas.style.removeProperty("--tilt-x");
-        canvas.style.removeProperty("--tilt-y");
-      });
-  }
-  updateProgress();
-}
 
 revealElements.forEach((element) => {
   const siblings = [...element.parentElement.children].filter((child) =>
@@ -90,11 +47,7 @@ revealElements.forEach((element) => {
     element.dataset.motionDirection =
       siblings.indexOf(element) % 2 ? "right" : "left";
   }
-  if (
-    revealObserver &&
-    motionEnabled() &&
-    element.getBoundingClientRect().top >= innerHeight
-  ) {
+  if (revealObserver && element.getBoundingClientRect().top >= innerHeight) {
     element.classList.add("will-reveal");
   } else {
     reveal(element);
@@ -105,17 +58,6 @@ document.addEventListener("focusin", (event) => {
   const hiddenSection = event.target.closest(".will-reveal");
   if (hiddenSection) reveal(hiddenSection);
 });
-motionButtons.forEach((button) =>
-  button.addEventListener("click", () => {
-    motionChoice = motionEnabled() ? "off" : "on";
-    try {
-      sessionStorage.setItem("colvia-motion-choice", motionChoice);
-    } catch {}
-    syncMotion();
-  }),
-);
-motionPreference.addEventListener("change", syncMotion);
-
 // Stop ambient loops when their scene is off screen or the tab is hidden.
 document.querySelectorAll(".hero-shell").forEach((hero) => {
   const orbit = document.createElement("div");
@@ -169,7 +111,7 @@ document
   .forEach((canvas) => {
     let pointerFrame = 0;
     canvas.addEventListener("pointermove", (event) => {
-      if (!motionEnabled() || !finePointer.matches) return;
+      if (!finePointer.matches) return;
       cancelAnimationFrame(pointerFrame);
       pointerFrame = requestAnimationFrame(() => {
         const bounds = canvas.getBoundingClientRect();
@@ -205,12 +147,9 @@ function updateProgress() {
       );
       section.style.setProperty(
         "--section-travel",
-        motionEnabled() ? `${(travel - 0.5) * 150}px` : "0px",
+        `${(travel - 0.5) * 150}px`,
       );
-      section.style.setProperty(
-        "--section-progress",
-        motionEnabled() ? travel : 1,
-      );
+      section.style.setProperty("--section-progress", travel);
     });
   });
 }
@@ -218,7 +157,6 @@ addEventListener("scroll", updateProgress, { passive: true });
 addEventListener("resize", updateProgress);
 document.addEventListener("toggle", updateProgress, true);
 updateProgress();
-syncMotion();
 
 // Normal links remain normal: only unmodified clicks to another local HTML page
 // get the short curtain. Hash links retain native scrolling and focus behavior.
@@ -249,7 +187,6 @@ function enterPage() {
   clearTimeout(entranceTimer);
   navigating = false;
   motionRoot.classList.remove("page-leaving", "page-entering");
-  if (!motionEnabled()) return;
   motionRoot.style.setProperty("--hero-entry-offset", "1.7s");
   motionRoot.classList.add("page-entering");
   entranceTimer = setTimeout(
@@ -274,8 +211,7 @@ document.addEventListener("click", (event) => {
     event.metaKey ||
     event.ctrlKey ||
     event.shiftKey ||
-    event.altKey ||
-    !motionEnabled()
+    event.altKey
   )
     return;
   const link = event.target.closest("a[href]");
