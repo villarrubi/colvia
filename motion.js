@@ -71,14 +71,20 @@ if (ribbonAnchor) {
   const ribbon = document.createElement("div");
   ribbon.className = "motion-ribbon";
   ribbon.setAttribute("aria-hidden", "true");
+  const ribbonPhrases = [
+    "Escuchar tu idea.",
+    "Entender tu negocio.",
+    "Diseñar contigo.",
+    "Desarrollar a medida.",
+    "Conectar tus herramientas.",
+    "Seguir mejorando.",
+  ];
+  const ribbonGroup =
+    '<span class="ribbon-group">' +
+    ribbonPhrases.map((phrase) => `<span>${phrase}</span><i></i>`).join("") +
+    "</span>";
   ribbon.innerHTML =
-    '<div class="ribbon-track">' +
-    Array.from(
-      { length: 4 },
-      () =>
-        '<span class="ribbon-group"><span>Pensar.</span><i></i><span>Construir.</span><i></i><span>Mejorar.</span><i></i></span>',
-    ).join("") +
-    "</div>";
+    '<div class="ribbon-track">' + ribbonGroup.repeat(4) + "</div>";
   ribbonAnchor.after(ribbon);
 }
 const scenes = document.querySelectorAll(
