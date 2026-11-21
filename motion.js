@@ -66,7 +66,8 @@ document.querySelectorAll(".hero-shell").forEach((hero) => {
   orbit.innerHTML = "<i></i><i></i>";
   hero.prepend(orbit);
 });
-const ribbonAnchor = document.querySelector(".audience-strip, .team-section");
+const ribbonAnchor =
+  document.querySelector(".team-section") || document.querySelector(".hero-shell");
 if (ribbonAnchor) {
   const ribbon = document.createElement("div");
   ribbon.className = "motion-ribbon";
@@ -88,7 +89,7 @@ if (ribbonAnchor) {
   ribbonAnchor.after(ribbon);
 }
 const scenes = document.querySelectorAll(
-  ".hero-shell, .hero-visual, .about-emblem, .section, .audience-strip, .site-footer, .motion-ribbon",
+  ".hero-shell, .hero-visual, .about-emblem, .section, .site-footer, .motion-ribbon",
 );
 const motionSections = [...document.querySelectorAll(".section")];
 motionSections.forEach((section) => {
