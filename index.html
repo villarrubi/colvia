@@ -35,9 +35,11 @@
       crossorigin
     />
     <link rel="stylesheet" href="styles.css?v=20261121-intro4" />
+    <link rel="stylesheet" href="portfolio.css?v=20261121-portfolio1" />
     <link rel="stylesheet" href="motion.css?v=20261121-intro4" />
     <script src="app.js?v=20261121-intro4" defer></script>
     <script src="motion.js?v=20261121-intro4" defer></script>
+    <script src="portfolio.js?v=20261121-portfolio1" defer></script>
   </head>
   <body>
     <div class="reading-progress" aria-hidden="true"></div>
@@ -350,82 +352,337 @@
       </section>
 
       <section
-        class="experience-section section"
+        class="experience-section portfolio-section section"
         id="experiencia"
         aria-labelledby="experience-title"
       >
         <div class="wrap">
           <div class="section-heading reveal">
             <div>
-              <p class="eyebrow">EXPERIENCIA APLICADA</p>
+              <p class="eyebrow">PROYECTOS Y EXPERIENCIA</p>
               <h2 id="experience-title">
-                Experiencia en hospitales. <br />Y en empresas.
+                Distintos sectores.<br /><span>Soluciones propias.</span>
               </h2>
             </div>
             <p>
-              La experiencia del equipo incluye desarrollo de software para
-              hospitales y empresas privadas. Es la base desde la que
-              construimos Colvia.
+              Hemos trabajado para particulares y profesionales, empresas
+              privadas, hospitales públicos y clubes. Este es el recorrido del
+              equipo que hoy da forma a Colvia.
             </p>
           </div>
-          <div class="experience-grid">
-            <article class="experience-card hospital-card reveal">
-              <div class="case-visual hospital-visual" aria-hidden="true">
-                <svg class="hospital-drawing" viewBox="0 0 520 240" fill="none">
-                  <path
-                    class="diagram-line"
-                    d="M36 205h448M96 205V84h109V37h152v168M205 84v121M357 97h66v108"
+          <div class="portfolio-toolbar" hidden>
+            <div
+              class="portfolio-filters"
+              role="group"
+              aria-label="Filtrar proyectos por ámbito"
+            >
+              <button
+                type="button"
+                data-project-filter="all"
+                aria-pressed="true"
+              >
+                Todos
+              </button>
+              <button
+                type="button"
+                data-project-filter="profesionales"
+                aria-pressed="false"
+              >
+                Particulares y profesionales
+              </button>
+              <button
+                type="button"
+                data-project-filter="empresas"
+                aria-pressed="false"
+              >
+                Empresas privadas
+              </button>
+              <button
+                type="button"
+                data-project-filter="publico"
+                aria-pressed="false"
+              >
+                Sector público
+              </button>
+              <button
+                type="button"
+                data-project-filter="clubes"
+                aria-pressed="false"
+              >
+                Clubes y asociaciones
+              </button>
+            </div>
+            <p class="portfolio-status" role="status" aria-live="polite">
+              5 ejemplos · 4 ámbitos
+            </p>
+          </div>
+          <div class="portfolio-grid" data-filter="all">
+            <article
+              class="portfolio-card portfolio-featured reveal"
+              data-project-category="clubes"
+            >
+              <div class="portfolio-preview preview-club">
+                <div class="portfolio-screen">
+                  <div class="screen-chrome" aria-hidden="true">
+                    <i></i><i></i><i></i><span>clubpalentinoajedrez.es</span>
+                  </div>
+                  <img
+                    src="assets/projects/club-palentino.jpg"
+                    alt="Captura real de la web del Club Palentino de Ajedrez: portada, escuela y navegación del club"
+                    width="1440"
+                    height="1000"
+                    loading="lazy"
+                    decoding="async"
                   />
-                  <path
-                    class="diagram-detail"
-                    d="M117 110h19v19h-19zm39 0h19v19h-19zm-39 41h19v19h-19zm39 0h19v19h-19zm216-33h24v20h-24zm0 39h24v20h-24zM238 121h27v25h-27zm56 0h27v25h-27zM260 205v-34h40v34"
-                  />
-                  <path
-                    class="diagram-cross"
-                    d="M270 62h20v15h15v20h-15v15h-20V97h-15V77h15z"
-                  />
-                </svg>
-                <span class="case-visual-label">ENTORNO HOSPITALARIO</span>
+                </div>
+                <span class="preview-label">CAPTURA REAL</span>
               </div>
-              <div class="case-copy">
-                <p class="case-type">SISTEMA ESPECÍFICO</p>
-                <h3>Software para <br />entornos hospitalarios.</h3>
+              <div class="portfolio-copy">
+                <p class="case-type">CLUBES Y ASOCIACIONES</p>
+                <h3>Club Palentino de Ajedrez.</h3>
                 <p>
-                  Hemos desarrollado software a medida para hospitales.
-                  Experiencia en entornos especializados que forma parte del
-                  recorrido de nuestro equipo.
+                  Una web que reúne la vida del club: escuela, torneos, noticias
+                  y acceso a materiales para los alumnos.
                 </p>
+                <ul class="project-tags" aria-label="Áreas del proyecto">
+                  <li>Web del club</li>
+                  <li>Escuela</li>
+                  <li>Área de alumnos</li>
+                </ul>
+                <details class="project-details">
+                  <summary>
+                    Qué desarrollamos <span aria-hidden="true">+</span>
+                  </summary>
+                  <div>
+                    <p>
+                      La presencia pública del club y una plataforma para su
+                      escuela, con información de cursos, noticias y torneos,
+                      junto a un aula privada para los materiales.
+                    </p>
+                    <p>
+                      El proyecto conecta la actividad que se ve desde fuera con
+                      las herramientas que utiliza la comunidad del club.
+                    </p>
+                  </div>
+                </details>
+                <a class="project-visit" href="https://clubpalentinoajedrez.es/"
+                  >Visitar la web del club <span aria-hidden="true">↗</span></a
+                >
               </div>
             </article>
-            <article class="experience-card business-card reveal">
-              <div class="case-visual business-visual" aria-hidden="true">
-                <div class="business-diagram">
-                  <div class="diagram-module">
-                    <span></span><span></span><span></span>
+            <article
+              class="portfolio-card portfolio-featured reveal"
+              data-project-category="profesionales"
+            >
+              <div class="portfolio-preview preview-law">
+                <div
+                  class="portfolio-screen illustrative-screen"
+                  aria-hidden="true"
+                >
+                  <div class="screen-chrome">
+                    <i></i><i></i><i></i><span>DESPACHO PROFESIONAL</span>
                   </div>
-                  <div class="diagram-bridge"></div>
-                  <div class="diagram-core">
-                    <svg viewBox="0 0 64 64">
-                      <use href="assets/colvia-mark.svg#colvia-mark" />
-                    </svg>
-                  </div>
-                  <div class="diagram-bridge"></div>
-                  <div class="diagram-module module-end">
-                    <span></span><span></span><span></span>
+                  <div class="law-demo">
+                    <div class="demo-nav">
+                      <b>ESTUDIO JURÍDICO</b
+                      ><span>El despacho · Servicios</span>
+                    </div>
+                    <div class="law-demo-body">
+                      <span>ASESORAMIENTO PERSONAL</span
+                      ><strong
+                        >Criterio.<br />Cercanía.<br /><em
+                          >Confianza.</em
+                        ></strong
+                      >
+                      <div class="law-columns"><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="demo-footer">
+                      Conoce el despacho <span>Hablemos de tu caso</span>
+                    </div>
                   </div>
                 </div>
-                <span class="case-visual-label">EMPRESA PRIVADA</span>
+                <span class="preview-label">VISTA ILUSTRATIVA</span>
               </div>
-              <div class="case-copy">
-                <p class="case-type">DESARROLLO PARA EMPRESAS</p>
-                <h3>Más allá de <br />la presencia online.</h3>
+              <div class="portfolio-copy">
+                <p class="case-type">PARTICULARES Y PROFESIONALES</p>
+                <h3>Despachos profesionales.</h3>
                 <p>
-                  El equipo también ha realizado desarrollos para empresas
-                  privadas, tanto en la web como en sistemas específicos. Esa
-                  experiencia se refleja en las líneas de trabajo de Colvia.
+                  También hemos trabajado con profesionales independientes y
+                  despachos jurídicos. Una presencia digital que ayuda a
+                  explicar quién está detrás y qué puede ofrecer.
                 </p>
+                <ul class="project-tags" aria-label="Ámbito">
+                  <li>Servicios profesionales</li>
+                  <li>Presencia digital</li>
+                </ul>
+                <details class="project-details">
+                  <summary>
+                    Conocer este ámbito <span aria-hidden="true">+</span>
+                  </summary>
+                  <div>
+                    <p>
+                      Nuestra experiencia incluye la web de un despacho
+                      jurídico: presentación del equipo, servicios, sedes y vías
+                      de contacto.
+                    </p>
+                    <p>
+                      La composición superior es ilustrativa. Presentamos este
+                      ámbito con un nombre genérico.
+                    </p>
+                  </div>
+                </details>
               </div>
             </article>
+            <article
+              class="portfolio-card reveal"
+              data-project-category="profesionales"
+            >
+              <div class="portfolio-preview preview-architecture">
+                <div class="architecture-demo" aria-hidden="true">
+                  <div class="demo-nav">
+                    <b>ESTUDIO /</b><span>Arquitectura</span>
+                  </div>
+                  <strong>Espacios<br />para vivir.</strong
+                  ><svg viewBox="0 0 400 260" fill="none">
+                    <path d="M45 210 220 125 362 173 190 258Z" fill="#d5cdbf" />
+                    <path d="M102 180V65L231 25V133Z" fill="#efebe3" />
+                    <path d="M231 25 321 72V178L231 133Z" fill="#a49886" />
+                    <path d="m102 65 90 40 129-33-90-47Z" fill="#faf8f3" />
+                    <path d="M192 105v119l129-46V72Z" fill="#c4b9a7" />
+                    <path d="m211 122 73-24v66l-73 25Z" fill="#40524a" />
+                    <path d="M119 92v79l51 25v-76Z" fill="#b8b1a3" />
+                    <path
+                      d="m45 210 145 48m-88-78 90 44 129-46M231 25v108"
+                      stroke="#756e62"
+                      stroke-width="1"
+                    /></svg
+                  ><span class="architecture-caption"
+                    >FORMA / MATERIA / LUZ</span
+                  >
+                </div>
+                <span class="preview-label">VISTA ILUSTRATIVA</span>
+              </div>
+              <div class="portfolio-copy">
+                <p class="case-type">PARTICULARES Y PROFESIONALES</p>
+                <h3>Arquitectura.</h3>
+                <p>
+                  Proyectos para profesionales de la arquitectura. La misma
+                  atención al detalle, llevada a su espacio digital.
+                </p>
+                <details class="project-details">
+                  <summary>
+                    Conocer este ámbito <span aria-hidden="true">+</span>
+                  </summary>
+                  <div>
+                    <p>
+                      El recorrido del equipo incluye un proyecto para un
+                      profesional de la arquitectura. Mostramos aquí una
+                      composición visual genérica, no una captura del trabajo
+                      entregado.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </article>
+            <article
+              class="portfolio-card reveal"
+              data-project-category="empresas"
+            >
+              <div class="portfolio-preview preview-hospitality">
+                <div class="hospitality-demo" aria-hidden="true">
+                  <div class="demo-nav">
+                    <b>LA MESA</b><span>Bar & cocina</span>
+                  </div>
+                  <strong>Lo de siempre.<br /><em>Como nunca.</em></strong>
+                  <div class="coffee-scene">
+                    <span class="coffee-saucer"></span
+                    ><span class="coffee-cup"></span
+                    ><span class="coffee-steam"></span>
+                  </div>
+                  <div class="demo-footer">
+                    Nuestra carta <span>Ven a conocernos</span>
+                  </div>
+                </div>
+                <span class="preview-label">VISTA ILUSTRATIVA</span>
+              </div>
+              <div class="portfolio-copy">
+                <p class="case-type">EMPRESAS PRIVADAS</p>
+                <h3>Bares y negocios locales.</h3>
+                <p>
+                  Experiencia con empresas privadas y hostelería. Soluciones
+                  digitales para negocios con personalidad propia y necesidades
+                  concretas.
+                </p>
+                <details class="project-details">
+                  <summary>
+                    Conocer este ámbito <span aria-hidden="true">+</span>
+                  </summary>
+                  <div>
+                    <p>
+                      Hemos trabajado para empresas privadas, incluidos bares y
+                      negocios locales. Partimos de su actividad para dar forma
+                      a cada proyecto.
+                    </p>
+                    <p>
+                      «La Mesa» es un nombre ficticio para esta vista
+                      ilustrativa; no identifica a un cliente.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </article>
+            <article
+              class="portfolio-card reveal"
+              data-project-category="publico"
+            >
+              <div class="portfolio-preview preview-health">
+                <div class="health-demo" aria-hidden="true">
+                  <span>DESARROLLO A MEDIDA</span>
+                  <div class="health-orbit"><i></i><b>+</b></div>
+                  <strong>Tecnología en<br />entornos reales.</strong
+                  ><svg viewBox="0 0 400 50">
+                    <path
+                      d="M0 25H100l16-14 19 28 20-36 19 22h226"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <span class="preview-label">PROYECTO NO PÚBLICO</span>
+              </div>
+              <div class="portfolio-copy">
+                <p class="case-type">SECTOR PÚBLICO · HOSPITALES</p>
+                <h3>Software hospitalario.</h3>
+                <p>
+                  Desarrollo e implantación de un sistema en un entorno
+                  hospitalario público. Experiencia con necesidades que van más
+                  allá de una web.
+                </p>
+                <details class="project-details">
+                  <summary>
+                    Sobre esta experiencia <span aria-hidden="true">+</span>
+                  </summary>
+                  <div>
+                    <p>
+                      El equipo ha desarrollado software a medida para
+                      hospitales. Es una experiencia previa que forma parte de
+                      nuestro recorrido profesional.
+                    </p>
+                    <p>
+                      Por confidencialidad, no mostramos el centro, las
+                      pantallas del sistema ni información de sus usuarios.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </article>
+          </div>
+          <div class="portfolio-closing reveal">
+            <p>De una web profesional a una herramienta para todo un equipo.</p>
+            <a href="#metodo"
+              >Así trabajamos cada proyecto <span aria-hidden="true">↗</span></a
+            >
           </div>
         </div>
       </section>
