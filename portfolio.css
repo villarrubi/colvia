@@ -276,25 +276,23 @@
   transform: rotate(45deg);
 }
 .portfolio-closing {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 36px;
   border-top: 1px solid #ffffff30;
   margin-top: 48px;
   padding-top: 36px;
 }
+.portfolio-closing > div {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
 .portfolio-closing h3 {
-  font-size: 30px;
-  margin-bottom: 12px;
+  font-size: 24px;
+  margin: 0;
 }
 .portfolio-closing p {
   color: #c2c9bb;
-  max-width: 570px;
-}
-.portfolio-closing .button {
-  flex-shrink: 0;
-  text-align: center;
+  max-width: none;
 }
 .motion-ready .motion-in-view .portfolio-screen {
   animation: portfolio-float 7s ease-in-out infinite;
@@ -337,10 +335,6 @@
   }
   .portfolio-copy {
     padding: 24px;
-  }
-  .portfolio-closing {
-    align-items: flex-start;
-    flex-direction: column;
   }
   .sector-paper {
     right: 30px;
@@ -414,9 +408,5 @@
   }
   .community-orbit > span {
     inset: 35px;
-  }
-  .portfolio-closing .button {
-    white-space: normal;
-    width: 100%;
   }
 }
