@@ -1,5 +1,7 @@
 // Progressive motion: content and navigation remain complete without this file.
 const motionRoot = document.documentElement;
+const isAboutPage = Boolean(document.querySelector(".about-hero"));
+motionRoot.classList.toggle("page-about", isAboutPage);
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 // Give lists their own rhythm instead of revealing a whole block at once.
 document
@@ -67,7 +69,8 @@ document.querySelectorAll(".hero-shell").forEach((hero) => {
   hero.prepend(orbit);
 });
 const ribbonAnchor =
-  document.querySelector(".team-section") || document.querySelector(".hero-shell");
+  document.querySelector(".team-section") ||
+  document.querySelector(".hero-shell");
 if (ribbonAnchor) {
   const ribbon = document.createElement("div");
   ribbon.className = "motion-ribbon";
@@ -193,12 +196,28 @@ function enterPage() {
   clearTimeout(navigationTimer);
   clearTimeout(entranceTimer);
   navigating = false;
-  motionRoot.classList.remove("page-leaving", "page-entering");
-  motionRoot.style.setProperty("--hero-entry-offset", "1.7s");
+  motionRoot.classList.remove("page-leaving", "page-entering", "page-to-about");
+  motionRoot.style.setProperty(
+    "--hero-entry-offset",
+    isAboutPage ? "0s" : "1.7s",
+  );
   motionRoot.classList.add("page-entering");
+  if (isAboutPage) {
+    // Replay the editorial entrance when returning from the back/forward cache.
+    document
+      .querySelector(".about-hero")
+      .getAnimations({ subtree: true })
+      .filter((animation) =>
+        animation.animationName?.startsWith("about-intro-"),
+      )
+      .forEach((animation) => {
+        animation.cancel();
+        animation.play();
+      });
+  }
   entranceTimer = setTimeout(
     () => motionRoot.classList.remove("page-entering"),
-    3200,
+    isAboutPage ? 2000 : 3200,
   );
 }
 pageCurtain.addEventListener("animationend", (event) => {
@@ -207,6 +226,14 @@ pageCurtain.addEventListener("animationend", (event) => {
     motionRoot.classList.remove("page-entering");
   }
 });
+document
+  .querySelector(".about-emblem")
+  ?.addEventListener("animationend", (event) => {
+    if (event.animationName === "about-intro-emblem") {
+      clearTimeout(entranceTimer);
+      motionRoot.classList.remove("page-entering");
+    }
+  });
 enterPage();
 addEventListener("pageshow", (event) => {
   if (event.persisted) enterPage();
@@ -244,6 +271,11 @@ document.addEventListener("click", (event) => {
   navigating = true;
   clearTimeout(entranceTimer);
   motionRoot.classList.remove("page-entering");
+  const goingToAbout = destination.pathname.endsWith("/conocenos.html");
+  motionRoot.classList.toggle("page-to-about", goingToAbout);
   motionRoot.classList.add("page-leaving");
-  navigationTimer = setTimeout(() => location.assign(destination.href), 540);
+  navigationTimer = setTimeout(
+    () => location.assign(destination.href),
+    goingToAbout ? 380 : 540,
+  );
 });

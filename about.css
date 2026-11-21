@@ -16,7 +16,16 @@
   line-height: 1.04;
   letter-spacing: -0.06em;
 }
-.about-hero h1 span {
+.about-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.about-title-line > span {
+  display: block;
+}
+.about-title-line:last-child {
   color: var(--accent);
 }
 .about-hero .text-link {
