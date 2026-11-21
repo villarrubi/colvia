@@ -429,25 +429,25 @@ main {
     visibility: visible;
   }
   .motion-ready.page-entering .curtain-ink {
-    animation: intro-ink-lift 1s 0.9s cubic-bezier(0.76, 0, 0.24, 1) both;
+    animation: intro-ink-lift 1.43s 1.29s cubic-bezier(0.76, 0, 0.24, 1) both;
   }
   .motion-ready.page-entering .curtain-lime {
-    animation: intro-lime-lift 1.05s 1.05s cubic-bezier(0.76, 0, 0.24, 1) both;
+    animation: intro-lime-lift 1.5s 1.5s cubic-bezier(0.76, 0, 0.24, 1) both;
   }
   .motion-ready.page-entering .curtain-brand {
-    animation: intro-brand-away 0.45s 0.95s ease both;
+    animation: intro-brand-away 0.64s 1.36s ease both;
   }
   .motion-ready.page-entering .curtain-piece-one {
-    animation: intro-piece-one 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: intro-piece-one 1.21s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-entering .curtain-piece-two {
-    animation: intro-piece-two 0.85s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: intro-piece-two 1.21s 0.11s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-entering .curtain-word > span {
-    animation: intro-word 0.8s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: intro-word 1.14s 0.23s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-entering .curtain-rule {
-    animation: grow-line 0.8s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: grow-line 1.14s 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-leaving .curtain-layer {
     animation: curtain-exit 0.45s cubic-bezier(0.76, 0, 0.24, 1) both;

@@ -250,11 +250,11 @@ function enterPage() {
   navigating = false;
   motionRoot.classList.remove("page-leaving", "page-entering");
   if (!motionEnabled()) return;
-  motionRoot.style.setProperty("--hero-entry-offset", "1.2s");
+  motionRoot.style.setProperty("--hero-entry-offset", "1.7s");
   motionRoot.classList.add("page-entering");
   entranceTimer = setTimeout(
     () => motionRoot.classList.remove("page-entering"),
-    2300,
+    3200,
   );
 }
 pageCurtain.addEventListener("animationend", (event) => {
