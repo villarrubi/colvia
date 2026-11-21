@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171a17" />
+    <meta
+      name="description"
+      content="Colvia. Desarrollo de software a medida, aplicaciones y páginas web para empresas, comercios y organismos públicos. Tecnología para necesidades reales."
+    />
+    <title>Colvia — Software a medida para necesidades reales.</title>
+    <meta
+      property="og:title"
+      content="Colvia — Software a medida para necesidades reales."
+    />
+    <meta
+      property="og:description"
+      content="Sistemas a medida, soluciones web y desarrollo para empresas y sector público. Conoce nuestra experiencia y cuéntanos tu proyecto."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <link rel="icon" href="favicon.svg?v=7" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="assets/space-grotesk-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/manrope-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="motion.css" />
+    <script src="app.js" defer></script>
+    <script src="motion.js" defer></script>
+  </head>
+  <body>
+    <div class="reading-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="header-shell" id="inicio">
+      <div class="site-header wrap">
+        <a class="brand" href="#inicio" aria-label="Colvia, inicio">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <use href="assets/colvia-mark.svg#colvia-mark" />
+          </svg>
+          <svg
+            class="brand-wordmark"
+            viewBox="0 0 389.671 80"
+            aria-hidden="true"
+          >
+            <use href="assets/colvia-wordmark.svg#colvia-wordmark" />
+          </svg>
+        </a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="navigation"
+        >
+          <span>Menú</span><span class="menu-lines" aria-hidden="true"></span>
+        </button>
+        <nav id="navigation" aria-label="Navegación principal">
+          <a href="#servicios">Soluciones</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#sector-publico">Sector público</a>
+          <a href="#metodo">Cómo trabajamos</a>
+          <a href="conocenos.html">Conócenos</a>
+          <a
+            class="button button-primary nav-cta"
+            href="mailto:avillarrubia2@gmail.com"
+            >Escribir por email</a
+          >
+        </nav>
+      </div>
+    </header>
+    <main id="contenido">
+      <div class="hero-shell">
+        <section class="hero wrap" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">DESARROLLO DE SOFTWARE Y SOLUCIONES DIGITALES</p>
+            <h1 id="hero-title">
+              Software a medida. <br />Para trabajar <br /><span>mejor.</span>
+            </h1>
+            <p class="hero-description">
+              Desarrollamos herramientas internas, aplicaciones y webs para
+              empresas, comercios y organismos públicos. Menos tareas manuales,
+              información conectada y tecnología adaptada a tu actividad.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contacto"
+                >Cuéntanos tu proyecto</a
+              >
+              <a class="text-link" href="#servicios"
+                >Conoce nuestras soluciones</a
+              >
+            </div>
+            <a class="hero-team about-link" href="conocenos.html"
+              ><span class="about-link-mark" aria-hidden="true"
+                ><svg viewBox="0 0 64 64">
+                  <use href="assets/colvia-mark.svg#colvia-mark" /></svg></span
+              ><span
+                >El equipo detrás de Colvia.<strong>Conócenos</strong></span
+              ></a
+            >
+          </div>
+          <figure
+            class="hero-visual"
+            aria-label="Ejemplo conceptual de una aplicación para organizar solicitudes; no es una captura de un proyecto de cliente"
+          >
+            <div class="system-canvas" aria-hidden="true">
+              <div class="canvas-heading">
+                <span>UNA NECESIDAD. UNA SOLUCIÓN.</span
+                ><svg viewBox="0 0 64 64">
+                  <use href="assets/colvia-mark.svg#colvia-mark" />
+                </svg>
+              </div>
+              <div class="application-preview">
+                <div class="app-topbar">
+                  <span class="app-monogram"
+                    ><svg viewBox="0 0 64 64">
+                      <use
+                        href="assets/colvia-mark.svg#colvia-mark"
+                      /></svg></span
+                  ><span>Espacio de trabajo</span
+                  ><span class="app-avatar">EQ</span>
+                </div>
+                <div class="app-body">
+                  <div class="app-sidebar">
+                    <span class="sidebar-icon selected">▦</span
+                    ><span class="sidebar-icon">≡</span
+                    ><span class="sidebar-icon">⌑</span
+                    ><span class="sidebar-icon">+</span>
+                  </div>
+                  <div class="app-content">
+                    <div class="app-breadcrumb">Organización / Gestión</div>
+                    <div class="app-title">
+                      <span>Solicitudes</span
+                      ><span class="app-add">+ Nueva</span>
+                    </div>
+                    <div class="app-tabs">
+                      <span class="active">Todas</span><span>Pendientes</span
+                      ><span>Resueltas</span>
+                    </div>
+                    <div class="app-table-head">
+                      <span>Descripción</span><span>Estado</span>
+                    </div>
+                    <div class="app-table-row">
+                      <span><i></i>Solicitud de material</span
+                      ><b class="state-review">En revisión</b>
+                    </div>
+                    <div class="app-table-row">
+                      <span><i></i>Actualización de registro</span
+                      ><b class="state-done">Resuelta</b>
+                    </div>
+                    <div class="app-table-row">
+                      <span><i></i>Consulta del equipo</span
+                      ><b class="state-new">Pendiente</b>
+                    </div>
+                    <div class="app-table-row muted-row">
+                      <span><i></i>Acceso a documentación</span
+                      ><b class="state-review">En revisión</b>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="integration-card">
+                <span class="integration-icon" aria-hidden="true">+</span>
+                <div>
+                  <strong>Todo en su sitio.</strong
+                  ><span>Personas, procesos e información.</span>
+                </div>
+              </div>
+              <div class="canvas-bottom">
+                <span>DISEÑO</span><i></i><span>DESARROLLO</span><i></i
+                ><span>INTEGRACIÓN</span>
+              </div>
+            </div>
+            <figcaption class="visual-caption">
+              <span>Ejemplo de interfaz · Datos ilustrativos</span
+              ><button
+                class="motion-toggle"
+                type="button"
+                aria-pressed="false"
+                hidden
+              >
+                Pausar animaciones
+              </button>
+            </figcaption>
+          </figure>
+        </section>
+      </div>
+      <div class="audience-strip">
+        <div class="wrap">
+          <p>Tecnología para distintos contextos.</p>
+          <ul aria-label="Ámbitos de trabajo">
+            <li>Empresas y comercios</li>
+            <li>Entornos especializados</li>
+            <li>Sector público</li>
+          </ul>
+        </div>
+      </div>
+
+      <section
+        class="section wrap services-section"
+        id="servicios"
+        aria-labelledby="services-title"
+      >
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">QUÉ HACEMOS</p>
+            <h2 id="services-title">
+              La herramienta adecuada. <br />Para tu forma de trabajar.
+            </h2>
+          </div>
+          <p>
+            Organizar el trabajo de un equipo, vender online o conectar
+            herramientas. Te ayudamos a definir el alcance y a elegir por dónde
+            empezar.
+          </p>
+        </div>
+        <div class="service-list">
+          <article class="service-row reveal">
+            <div class="service-title">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="5" y="6" width="16" height="16" rx="2" />
+                <rect x="27" y="26" width="16" height="16" rx="2" />
+                <path d="M29 7h12v12M7 28v12h12M21 14h6v20" />
+              </svg>
+              <h3>Software <br />a medida.</h3>
+            </div>
+            <div class="service-description">
+              <p>
+                Aplicaciones adaptadas a tus procesos: desde el registro de
+                solicitudes hasta la gestión de tareas y documentación.
+                Diseñadas para las personas que las utilizarán cada día.
+              </p>
+              <ul class="tag-list">
+                <li>Herramientas internas</li>
+                <li>Gestión de procesos</li>
+                <li>Aplicaciones específicas</li>
+              </ul>
+            </div>
+            <details class="service-options">
+              <summary>
+                Ver ejemplos de herramientas<span aria-hidden="true">+</span>
+              </summary>
+              <div class="service-options-content">
+                <p>
+                  <strong>Gestión interna</strong>Solicitudes, tareas y
+                  documentación en una aplicación adaptada al equipo.
+                </p>
+                <p>
+                  <strong>Acceso por perfiles</strong>Pantallas y permisos
+                  definidos según quién utiliza la herramienta.
+                </p>
+                <p>
+                  <strong>Seguimiento de actividad</strong>Estados, búsquedas e
+                  informes para consultar el trabajo en curso.
+                </p>
+              </div>
+            </details>
+          </article>
+          <article class="service-row reveal">
+            <div class="service-title">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="5" y="8" width="38" height="31" rx="3" />
+                <path d="M5 17h38M12 12h2m4 0h2M12 25h10m-10 7h22" />
+              </svg>
+              <h3>Web y <br />comercio digital.</h3>
+            </div>
+            <div class="service-description">
+              <p>
+                Webs corporativas, tiendas y soluciones para comercios locales.
+                Diseño y desarrollo para presentar tu actividad, vender o
+                atender a tus clientes.
+              </p>
+              <ul class="tag-list">
+                <li>Páginas web</li>
+                <li>Tiendas online</li>
+                <li>Reservas y catálogos</li>
+              </ul>
+            </div>
+            <details class="service-options">
+              <summary>
+                Explorar formatos de web<span aria-hidden="true">+</span>
+              </summary>
+              <div class="service-options-content">
+                <p>
+                  <strong>Web corporativa</strong>Presentar tu actividad,
+                  explicar tus servicios y facilitar el contacto.
+                </p>
+                <p>
+                  <strong>Tienda online</strong>Catálogo, compra y gestión de
+                  pedidos, con el alcance acordado para tu negocio.
+                </p>
+                <p>
+                  <strong>Reservas y catálogos</strong>Mostrar disponibilidad,
+                  recibir solicitudes o ayudar a elegir un producto.
+                </p>
+              </div>
+            </details>
+          </article>
+          <article class="service-row reveal">
+            <div class="service-title">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path
+                  d="M7 16h13v16h21M28 9h13v14H28zM7 26h13v14H7zM20 16h8M34 23v9"
+                />
+              </svg>
+              <h3>Integración <br />y evolución.</h3>
+            </div>
+            <div class="service-description">
+              <p>
+                Conectamos herramientas para evitar duplicar datos y facilitar
+                el seguimiento del trabajo. Primero revisamos la tecnología y
+                los accesos disponibles para valorar qué se puede mejorar.
+              </p>
+              <ul class="tag-list">
+                <li>Integraciones</li>
+                <li>Automatización</li>
+                <li>Mejora de sistemas</li>
+              </ul>
+            </div>
+            <details class="service-options">
+              <summary>
+                Qué revisamos de tu sistema<span aria-hidden="true">+</span>
+              </summary>
+              <div class="service-options-content">
+                <p>
+                  <strong>Herramientas actuales</strong>Qué utilizáis, qué
+                  tareas se repiten y dónde se pierde información.
+                </p>
+                <p>
+                  <strong>Accesos e integraciones</strong>Documentación, APIs y
+                  opciones de exportación que permita cada herramienta.
+                </p>
+                <p>
+                  <strong>Alcance de la mejora</strong>Qué conviene conectar,
+                  automatizar o ampliar y cómo comprobar el resultado.
+                </p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="experience-section section"
+        id="experiencia"
+        aria-labelledby="experience-title"
+      >
+        <div class="wrap">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow">EXPERIENCIA APLICADA</p>
+              <h2 id="experience-title">
+                Experiencia en hospitales. <br />Y en empresas.
+              </h2>
+            </div>
+            <p>
+              La experiencia del equipo incluye desarrollo de software para
+              hospitales y empresas privadas. Es la base desde la que
+              construimos Colvia.
+            </p>
+          </div>
+          <div class="experience-grid">
+            <article class="experience-card hospital-card reveal">
+              <div class="case-visual hospital-visual" aria-hidden="true">
+                <svg class="hospital-drawing" viewBox="0 0 520 240" fill="none">
+                  <path
+                    class="diagram-line"
+                    d="M36 205h448M96 205V84h109V37h152v168M205 84v121M357 97h66v108"
+                  />
+                  <path
+                    class="diagram-detail"
+                    d="M117 110h19v19h-19zm39 0h19v19h-19zm-39 41h19v19h-19zm39 0h19v19h-19zm216-33h24v20h-24zm0 39h24v20h-24zM238 121h27v25h-27zm56 0h27v25h-27zM260 205v-34h40v34"
+                  />
+                  <path
+                    class="diagram-cross"
+                    d="M270 62h20v15h15v20h-15v15h-20V97h-15V77h15z"
+                  />
+                </svg>
+                <span class="case-visual-label">ENTORNO HOSPITALARIO</span>
+              </div>
+              <div class="case-copy">
+                <p class="case-type">SISTEMA ESPECÍFICO</p>
+                <h3>Software para <br />entornos hospitalarios.</h3>
+                <p>
+                  Hemos desarrollado software a medida para hospitales.
+                  Experiencia en entornos especializados que forma parte del
+                  recorrido de nuestro equipo.
+                </p>
+              </div>
+            </article>
+            <article class="experience-card business-card reveal">
+              <div class="case-visual business-visual" aria-hidden="true">
+                <div class="business-diagram">
+                  <div class="diagram-module">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="diagram-bridge"></div>
+                  <div class="diagram-core">
+                    <svg viewBox="0 0 64 64">
+                      <use href="assets/colvia-mark.svg#colvia-mark" />
+                    </svg>
+                  </div>
+                  <div class="diagram-bridge"></div>
+                  <div class="diagram-module module-end">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <span class="case-visual-label">EMPRESA PRIVADA</span>
+              </div>
+              <div class="case-copy">
+                <p class="case-type">DESARROLLO PARA EMPRESAS</p>
+                <h3>Más allá de <br />la presencia online.</h3>
+                <p>
+                  El equipo también ha realizado desarrollos para empresas
+                  privadas, tanto en la web como en sistemas específicos. Esa
+                  experiencia se refleja en las líneas de trabajo de Colvia.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="public-section section"
+        id="sector-publico"
+        aria-labelledby="public-title"
+      >
+        <div class="wrap public-grid">
+          <div class="public-copy reveal">
+            <p class="eyebrow">SECTOR PÚBLICO</p>
+            <h2 id="public-title">
+              Tecnología al servicio <br />de lo público.
+            </h2>
+            <p>
+              Abrimos una línea de trabajo orientada a organismos públicos y a
+              la participación en licitaciones de desarrollo de software.
+            </p>
+            <p>
+              Valoramos cada oportunidad según su alcance, sus requisitos y
+              nuestra capacidad de ejecución.
+            </p>
+            <a
+              class="button button-light"
+              href="mailto:avillarrubia2@gmail.com?subject=Consulta%20de%20proyecto%20para%20el%20sector%20p%C3%BAblico&amp;body=Hola%2C%20Colvia.%0A%0ANos%20gustar%C3%ADa%20consultar%20un%20proyecto%20para%20el%20sector%20p%C3%BAblico.%0A%0AOrganismo%3A%0AObjeto%20del%20proyecto%3A%0APlazos%20previstos%3A%0AEnlace%20a%20la%20documentaci%C3%B3n%2C%20si%20existe%3A%0A"
+              >Consultar por email</a
+            >
+          </div>
+          <div class="public-details reveal">
+            <p class="public-intro">
+              Un enfoque que empieza por comprender el proyecto.
+            </p>
+            <article>
+              <h3>Alcance y requisitos</h3>
+              <p>
+                Analizar la necesidad, los usuarios, las condiciones técnicas y
+                los criterios de entrega.
+              </p>
+            </article>
+            <article>
+              <h3>Propuesta técnica</h3>
+              <p>
+                Definir la solución, la planificación y los recursos adecuados
+                para cada convocatoria.
+              </p>
+            </article>
+            <article>
+              <h3>Desarrollo y entregables</h3>
+              <p>
+                Plantear hitos, pruebas y documentación de acuerdo con las
+                condiciones del proyecto.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section wrap method-section"
+        id="metodo"
+        aria-labelledby="method-title"
+      >
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">CÓMO TRABAJAMOS</p>
+            <h2 id="method-title">Claridad en cada fase.</h2>
+          </div>
+          <p>
+            Un interlocutor cercano y un alcance compartido. Para que sepas qué
+            estamos construyendo, por qué y qué viene después.
+          </p>
+        </div>
+        <ol class="process-list">
+          <li class="reveal">
+            <span class="process-line" aria-hidden="true"></span>
+            <h3>Entender.</h3>
+            <p>
+              Escuchamos a quienes usarán la solución y concretamos la necesidad
+              que hay que resolver.
+            </p>
+          </li>
+          <li class="reveal">
+            <span class="process-line" aria-hidden="true"></span>
+            <h3>Definir.</h3>
+            <p>
+              Acordamos funcionalidades, prioridades, presupuesto y entregables
+              antes de desarrollar.
+            </p>
+          </li>
+          <li class="reveal">
+            <span class="process-line" aria-hidden="true"></span>
+            <h3>Construir.</h3>
+            <p>
+              Diseñamos, desarrollamos y revisamos avances contigo. Probamos lo
+              construido frente a lo acordado.
+            </p>
+          </li>
+          <li class="reveal">
+            <span class="process-line" aria-hidden="true"></span>
+            <h3>Dar continuidad.</h3>
+            <p>
+              Preparamos la entrega y la documentación. Definimos el soporte y
+              la evolución que necesites.
+            </p>
+          </li>
+        </ol>
+        <div class="company-note reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <use href="assets/colvia-mark.svg#colvia-mark" />
+          </svg>
+          <p>
+            <strong>Un equipo cercano. Un proyecto compartido.</strong
+            ><span
+              >Gonzalo Colina y Alejandro Villarrubia impulsamos Colvia.
+              Trabajamos contigo desde la primera conversación hasta la entrega,
+              con prioridades y responsabilidades claras.
+              <a class="text-link" href="conocenos.html"
+                >Conoce al equipo</a
+              ></span
+            >
+          </p>
+        </div>
+      </section>
+
+      <section class="faq-section section wrap" aria-labelledby="faq-title">
+        <div class="faq-heading reveal">
+          <p class="eyebrow">ANTES DE EMPEZAR</p>
+          <h2 id="faq-title">Las cosas claras.</h2>
+          <p>
+            Cada proyecto tiene su contexto. <br />Estas son algunas preguntas
+            habituales.
+          </p>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>
+              ¿Trabajáis con comercios locales?<span
+                class="faq-plus"
+                aria-hidden="true"
+              ></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Sí. Las páginas web, tiendas online y herramientas para
+                comercios son parte de Colvia. Adaptamos el alcance a la
+                necesidad de cada negocio u organización.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              ¿Podéis mejorar un sistema que ya existe?<span
+                class="faq-plus"
+                aria-hidden="true"
+              ></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Primero revisamos su tecnología, documentación y posibilidades
+                de acceso. Con esa información valoramos si conviene ampliarlo,
+                conectarlo con otras herramientas o plantear un nuevo
+                desarrollo.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              ¿Cómo se define el presupuesto?<span
+                class="faq-plus"
+                aria-hidden="true"
+              ></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Partimos de los requisitos, las integraciones y el alcance.
+                Preparamos una propuesta con presupuesto, calendario y
+                entregables definidos. Los cambios de alcance se valoran contigo
+                antes de incorporarlos.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              ¿Qué ocurre después de la entrega?<span
+                class="faq-plus"
+                aria-hidden="true"
+              ></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Acordamos la puesta en marcha, la documentación y el soporte que
+                necesites. La propuesta concreta el mantenimiento, las
+                responsabilidades y los costes recurrentes que correspondan.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section
+        class="contact-section section"
+        id="contacto"
+        aria-labelledby="contact-title"
+      >
+        <div class="wrap contact-grid">
+          <div class="contact-copy reveal">
+            <p class="eyebrow">EMPECEMOS POR TU NECESIDAD</p>
+            <h2 id="contact-title">¿Qué necesitas <br />resolver?</h2>
+            <p>
+              Cuéntanos qué quieres mejorar, quién lo utilizará y en qué punto
+              estás. No necesitas tener una especificación técnica preparada.
+            </p>
+            <p>
+              Puedes escribirnos directamente o preparar una consulta con el
+              formulario.
+            </p>
+            <div class="contact-direct">
+              <a
+                class="contact-email"
+                data-contact-email
+                href="mailto:avillarrubia2@gmail.com"
+                >avillarrubia2@gmail.com</a
+              ><a class="contact-phone" href="tel:+34633586060">633 58 60 60</a>
+              <a
+                class="contact-whatsapp"
+                href="https://wa.me/34633586060"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Escribir directamente por WhatsApp</a
+              >
+            </div>
+            <div class="contact-note">
+              <span>EMPRESAS · COMERCIOS · SECTOR PÚBLICO</span
+              ><svg viewBox="0 0 64 64" aria-hidden="true">
+                <use href="assets/colvia-mark.svg#colvia-mark" />
+              </svg>
+            </div>
+          </div>
+          <form id="brief-form" class="contact-form reveal">
+            <h3>Hablemos de tu proyecto.</h3>
+            <p class="form-intro">
+              Prepara una consulta por email o WhatsApp. Tú revisas y envías el
+              mensaje.
+            </p>
+            <div class="field-row">
+              <label for="name"
+                >Tu nombre<input
+                  id="name"
+                  name="name"
+                  autocomplete="name"
+                  placeholder="Nombre y apellidos"
+                  required
+                  maxlength="100"
+              /></label>
+              <label for="business"
+                >Empresa u organización<input
+                  id="business"
+                  name="business"
+                  autocomplete="organization"
+                  placeholder="¿Desde dónde nos contactas?"
+                  required
+                  maxlength="120"
+              /></label>
+            </div>
+            <label for="service"
+              >¿En qué podemos ayudarte?<span class="select-wrap"
+                ><select name="service" id="service">
+                  <option>Software a medida</option>
+                  <option>Web y comercio digital</option>
+                  <option>Integración o evolución</option>
+                  <option>Proyecto para el sector público</option>
+                  <option>Necesito orientación</option>
+                </select></span
+              ></label
+            >
+            <label for="message"
+              >¿Qué necesitas resolver?<textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Qué necesitas, quién lo utilizará y en qué punto está el proyecto…"
+                required
+                maxlength="1800"
+              ></textarea>
+            </label>
+            <fieldset class="contact-channel">
+              <legend>Preparar consulta por</legend>
+              <label
+                ><input
+                  type="radio"
+                  name="channel"
+                  value="email"
+                  checked
+                /><span>Email</span></label
+              ><label
+                ><input type="radio" name="channel" value="whatsapp" /><span
+                  >WhatsApp</span
+                ></label
+              >
+            </fieldset>
+            <button
+              class="button button-primary"
+              id="submit-brief"
+              type="submit"
+              disabled
+            >
+              <span id="submit-label">Continuar por email</span>
+            </button>
+            <p class="form-footnote" id="form-footnote">
+              Se abrirá tu aplicación de correo con el mensaje preparado. Revisa
+              y envía cuando quieras.
+            </p>
+            <p id="form-status" role="status" aria-live="polite"></p>
+            <noscript
+              ><p>
+                Para preparar el mensaje, activa JavaScript o contacta
+                directamente por email o teléfono.
+              </p></noscript
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <a class="brand" href="#inicio" aria-label="Colvia, volver al inicio"
+            ><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+              <use href="assets/colvia-mark.svg#colvia-mark" /></svg
+            ><svg
+              class="brand-wordmark"
+              viewBox="0 0 389.671 80"
+              aria-hidden="true"
+            >
+              <use href="assets/colvia-wordmark.svg#colvia-wordmark" /></svg
+          ></a>
+          <p>Software a medida. <br />Relaciones de persona a persona.</p>
+          <a class="back-top" href="#inicio">Volver al inicio</a>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year">2026</span> Colvia</span
+          ><span>Desarrollo de software y soluciones digitales.</span
+          ><button type="button" class="privacy-trigger" data-privacy>
+            Privacidad
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <details class="contact-dock">
+      <summary>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z" />
+          <path d="M7 10h8M7 14h5" />
+        </svg>
+        <span>Contactar</span>
+      </summary>
+      <div
+        class="contact-dock-panel"
+        role="region"
+        aria-labelledby="quick-contact-title"
+      >
+        <p id="quick-contact-title">Hablemos de tu proyecto.</p>
+        <p class="contact-dock-intro">Elige cómo te viene mejor.</p>
+        <a
+          href="https://wa.me/34633586060"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><strong>WhatsApp</strong><span>Abrir una conversación</span></a
+        >
+        <a href="mailto:avillarrubia2@gmail.com"
+          ><strong>Email</strong><span>Escribir desde tu correo</span></a
+        >
+        <a href="tel:+34633586060"
+          ><strong>Llamar</strong><span>633 58 60 60</span></a
+        >
+        <a class="contact-dock-brief" href="#contacto"
+          ><strong>Prefiero el formulario</strong
+          ><span>Organizar los detalles del proyecto</span></a
+        >
+      </div>
+    </details>
+    <dialog
+      id="privacy-dialog"
+      class="privacy-dialog"
+      aria-labelledby="privacy-title"
+    >
+      <button class="dialog-close" type="button" aria-label="Cerrar privacidad">
+        <span aria-hidden="true">×</span>
+      </button>
+      <p class="eyebrow">TU INFORMACIÓN</p>
+      <h2 id="privacy-title">Privacidad, con claridad.</h2>
+      <p>
+        Este sitio no utiliza cookies de seguimiento ni herramientas de
+        analítica. Los datos del formulario se usan en tu navegador para
+        preparar un mensaje; no se guardan en esta web.
+      </p>
+      <p>
+        Si eliges WhatsApp, al continuar se abre su servicio con los datos que
+        has escrito. Si eliges email, se abre tu aplicación de correo. El envío
+        final lo decides tú y se aplican las condiciones del servicio elegido.
+      </p>
+      <p>
+        También puedes contactar directamente en el
+        <a href="tel:+34633586060">633 58 60 60</a>.
+      </p>
+    </dialog>
+  </body>
+</html>
