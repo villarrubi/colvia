@@ -81,6 +81,33 @@ if (form) {
   form.addEventListener("input", () => status.replaceChildren());
   updateChannel();
 
+  document
+    .querySelector("[data-experience-enquiry]")
+    ?.addEventListener("click", (event) => {
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      event.preventDefault();
+      const message = form.elements.namedItem("message");
+      // Keep an existing enquiry intact when the visitor returns to the portfolio.
+      if (!message.value.trim()) {
+        form.elements.namedItem("service").value =
+          "Consultar vuestra experiencia";
+        message.value =
+          "Hola, Colvia. Me gustaría conocer vuestra experiencia en proyectos similares al que tengo en mente.";
+        status.replaceChildren();
+      }
+      if (location.hash !== "#contacto")
+        history.pushState(null, "", "#contacto");
+      form.scrollIntoView({ block: "start" });
+      form.elements.namedItem("name").focus({ preventScroll: true });
+    });
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(form);
