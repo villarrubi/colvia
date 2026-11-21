@@ -11,10 +11,23 @@ document
   .forEach((element) => element.classList.add("reveal"));
 const revealElements = document.querySelectorAll(".reveal");
 let motionPaused = false;
+let motionChoice = null;
 try {
-  motionPaused = sessionStorage.getItem("colvia-motion-paused") === "true";
+  motionChoice = sessionStorage.getItem("colvia-motion-choice");
 } catch {}
-const motionEnabled = () => !motionPreference.matches && !motionPaused;
+const requestedMotion = new URLSearchParams(location.search).get("motion");
+if (requestedMotion === "on" || requestedMotion === "off") {
+  motionChoice = requestedMotion;
+  try {
+    sessionStorage.setItem("colvia-motion-choice", motionChoice);
+  } catch {}
+}
+const motionEnabled = () =>
+  motionChoice === "on" ||
+  (motionChoice !== "off" && !motionPreference.matches);
+// Keep the switch reachable even when the OS requests reduced motion. Move it
+// outside animated ancestors so position:fixed really follows the viewport.
+motionButtons.forEach((button) => document.body.append(button));
 
 function reveal(element) {
   element.classList.remove("will-reveal");
@@ -39,13 +52,15 @@ const revealObserver =
     : null;
 
 function syncMotion() {
-  const enabled = !motionPreference.matches;
+  const enabled = motionEnabled();
+  motionPaused = !enabled;
+  motionRoot.classList.toggle("motion-force", motionChoice === "on");
   motionRoot.classList.toggle("motion-ready", enabled);
   motionRoot.classList.toggle("motion-paused", motionPaused);
   motionButtons.forEach((button) => {
-    button.hidden = !enabled;
+    button.hidden = false;
     button.textContent = motionPaused
-      ? "Reanudar animaciones"
+      ? "Activar animaciones"
       : "Pausar animaciones";
     button.setAttribute("aria-pressed", String(motionPaused));
   });
@@ -92,9 +107,9 @@ document.addEventListener("focusin", (event) => {
 });
 motionButtons.forEach((button) =>
   button.addEventListener("click", () => {
-    motionPaused = !motionPaused;
+    motionChoice = motionEnabled() ? "off" : "on";
     try {
-      sessionStorage.setItem("colvia-motion-paused", String(motionPaused));
+      sessionStorage.setItem("colvia-motion-choice", motionChoice);
     } catch {}
     syncMotion();
   }),
@@ -102,6 +117,13 @@ motionButtons.forEach((button) =>
 motionPreference.addEventListener("change", syncMotion);
 
 // Stop ambient loops when their scene is off screen or the tab is hidden.
+document.querySelectorAll(".hero-shell").forEach((hero) => {
+  const orbit = document.createElement("div");
+  orbit.className = "hero-motion-orbits";
+  orbit.setAttribute("aria-hidden", "true");
+  orbit.innerHTML = "<i></i><i></i>";
+  hero.prepend(orbit);
+});
 const ribbonAnchor = document.querySelector(".audience-strip, .team-section");
 if (ribbonAnchor) {
   const ribbon = document.createElement("div");
@@ -118,7 +140,7 @@ if (ribbonAnchor) {
   ribbonAnchor.after(ribbon);
 }
 const scenes = document.querySelectorAll(
-  ".hero-visual, .about-emblem, .section, .audience-strip, .site-footer, .motion-ribbon",
+  ".hero-shell, .hero-visual, .about-emblem, .section, .audience-strip, .site-footer, .motion-ribbon",
 );
 const motionSections = [...document.querySelectorAll(".section")];
 motionSections.forEach((section) => {
@@ -147,8 +169,7 @@ document
   .forEach((canvas) => {
     let pointerFrame = 0;
     canvas.addEventListener("pointermove", (event) => {
-      if (motionPreference.matches || motionPaused || !finePointer.matches)
-        return;
+      if (!motionEnabled() || !finePointer.matches) return;
       cancelAnimationFrame(pointerFrame);
       pointerFrame = requestAnimationFrame(() => {
         const bounds = canvas.getBoundingClientRect();

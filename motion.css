@@ -50,12 +50,16 @@
   margin-top: 16px;
 }
 .motion-toggle {
+  position: fixed;
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  left: 24px;
+  z-index: 41;
   border: 1px solid #ffffff40;
   border-radius: 100px;
-  background: transparent;
+  background: var(--ink);
   color: var(--hero-text);
   padding: 7px 12px;
-  min-height: 36px;
+  min-height: 44px;
   font-size: 0.75rem;
 }
 .motion-toggle:hover {
@@ -74,8 +78,74 @@
   display: inline-block;
   margin-top: 8px;
 }
+.hero-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.hero-motion-orbits {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+.hero-motion-orbits i {
+  position: absolute;
+  width: clamp(460px, 60vw, 1000px);
+  aspect-ratio: 1;
+  right: -20%;
+  top: -30%;
+  border: 1px solid #d1f56830;
+  border-radius: 50%;
+}
+.hero-motion-orbits i::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50% 0;
+  background: var(--accent);
+  box-shadow: 0 0 30px #d1f56870;
+}
+.hero-motion-orbits i:nth-child(2) {
+  top: 20%;
+  right: -10%;
+  width: clamp(320px, 38vw, 700px);
+  border-style: dashed;
+}
+.motion-ready .motion-in-view .hero-motion-orbits i {
+  animation: orbit-turn 18s linear infinite;
+}
+.motion-ready .motion-in-view .hero-motion-orbits i:nth-child(2) {
+  animation-direction: reverse;
+  animation-duration: 13s;
+}
+.motion-ready .motion-in-view .canvas-heading svg {
+  animation: emblem-float 3s ease-in-out infinite;
+}
+.motion-ready .motion-in-view .canvas-bottom i {
+  transform-origin: left;
+  animation: workflow-line 2.5s ease-in-out infinite;
+}
+.motion-ready .motion-in-view .canvas-bottom i:last-of-type {
+  animation-delay: 1.25s;
+}
+@keyframes workflow-line {
+  0%,
+  100% {
+    transform: scaleX(0.2);
+    background: var(--accent-ink);
+  }
+  50% {
+    transform: scaleX(1);
+    background: var(--ink);
+  }
+}
 
-@media (prefers-reduced-motion: no-preference) {
+@media all {
   .motion-ready .hero-copy > * {
     animation: hero-arrive 0.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
   }
@@ -124,10 +194,10 @@
     animation: ambient-glow 8s ease-in-out infinite alternate;
   }
   .motion-ready .motion-in-view .application-preview {
-    animation: app-float 6s ease-in-out infinite;
+    animation: app-float 4.5s ease-in-out infinite;
   }
   .motion-ready .motion-in-view .integration-card {
-    animation: card-float 7s ease-in-out infinite;
+    animation: card-float 4s ease-in-out infinite;
   }
   .motion-ready .motion-in-view .app-table-row {
     animation: activity-row 8s ease-in-out infinite;
@@ -322,7 +392,7 @@ main {
   border-radius: 50% 0;
   transform: rotate(-45deg);
 }
-@media (prefers-reduced-motion: no-preference) {
+@media all {
   .motion-ready.page-entering .page-curtain {
     animation: curtain-enter 0.75s cubic-bezier(0.76, 0, 0.24, 1) both;
   }
@@ -355,7 +425,7 @@ main {
     animation: heading-unveil 1s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready .motion-in-view .ribbon-track {
-    animation: ribbon-flow 28s linear infinite;
+    animation: ribbon-flow 18s linear infinite;
   }
   .motion-ready .motion-in-view .ribbon-group i {
     animation: orbit-turn 8s linear infinite;
@@ -621,7 +691,7 @@ main {
     transform: translate3d(-3px, 0, 0) rotate(-0.35deg);
   }
   50% {
-    transform: translate3d(-3px, -9px, 0) rotate(0.35deg);
+    transform: translate3d(5px, -22px, 0) rotate(1deg);
   }
 }
 @keyframes card-float {
@@ -630,7 +700,7 @@ main {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(9px);
+    transform: translateY(17px);
   }
 }
 @keyframes ambient-glow {
@@ -715,6 +785,14 @@ main {
   transform: none;
 }
 @media (max-width: 600px) {
+  .motion-toggle {
+    left: 12px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    width: 124px;
+    font-size: 11px;
+    padding: 8px;
+    box-shadow: 0 3px 16px #171a1726;
+  }
   .about-link {
     padding-right: 0;
   }
@@ -723,17 +801,17 @@ main {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html:not(.motion-force) *,
+  html:not(.motion-force) *::before,
+  html:not(.motion-force) *::after {
     animation: none !important;
     transition: none !important;
   }
-  .will-reveal {
+  html:not(.motion-force) .will-reveal {
     opacity: 1;
     transform: none;
   }
-  .system-canvas {
+  html:not(.motion-force) .system-canvas {
     transform: none;
   }
 }

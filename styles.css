@@ -2030,16 +2030,16 @@ dialog::backdrop {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html:not(.motion-force) {
     scroll-behavior: auto;
   }
-  *,
-  *::before,
-  *::after {
+  html:not(.motion-force) *,
+  html:not(.motion-force) *::before,
+  html:not(.motion-force) *::after {
     animation: none !important;
     transition: none !important;
   }
-  .will-reveal {
+  html:not(.motion-force) .will-reveal {
     opacity: 1;
     transform: none;
   }

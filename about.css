@@ -116,7 +116,7 @@
 .founder-card:has(.founder-monogram) .founder-copy {
   margin-top: auto;
 }
-@media (prefers-reduced-motion: no-preference) {
+@media all {
   .founder-portrait img {
     transition: transform 0.65s cubic-bezier(0.2, 0.75, 0.25, 1);
   }
