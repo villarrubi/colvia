@@ -943,3 +943,24 @@ main {
     transform: translateX(-24px);
   }
 }
+
+/* Internal links and history keep the content immediately available. */
+.motion-ready.page-return .hero-copy > *,
+.motion-ready.page-about.page-return .hero-copy > *,
+.motion-ready.page-return .about-title-line > span,
+.motion-ready.page-return .about-emblem {
+  animation: none;
+}
+.motion-ready.page-leaving .page-curtain,
+.motion-ready.page-leaving.page-to-about .page-curtain {
+  visibility: hidden;
+}
+.motion-ready.page-leaving main,
+.motion-ready.page-leaving.page-to-about main {
+  animation: page-soft-exit 0.16s ease both;
+}
+@keyframes page-soft-exit {
+  to {
+    opacity: 0.35;
+  }
+}

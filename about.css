@@ -179,6 +179,17 @@
 .founder-copy h3 {
   font-size: clamp(25px, 2.7vw, 37px);
 }
+.founder-copy .founder-specialty {
+  color: var(--accent-ink);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-block: 16px;
+}
+.founder-copy .founder-bio {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-block: 12px;
+}
 .founder-copy .text-link {
   display: inline-flex;
   align-items: center;

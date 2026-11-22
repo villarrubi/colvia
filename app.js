@@ -1,13 +1,5 @@
-// Public business contact. The supplied "gmaiñ.com" was treated as a Gmail typo.
+// Public business contact. FormSubmit requires one-time recipient activation.
 const CONTACT_EMAIL = "avillarrubia2@gmail.com";
-const CONTACT_PHONE = "34633586060";
-
-// Keep the external application handoff separate so browser tests can replace
-// it without launching a mail client, WhatsApp or the system browser.
-function openContactDraft(url, isEmail) {
-  if (isEmail) window.location.href = url;
-  else window.open(url, "_blank", "noopener,noreferrer");
-}
 
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#navigation");
@@ -39,9 +31,11 @@ window.matchMedia("(min-width: 1101px)").addEventListener("change", closeMenu);
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 const privacyDialog = document.querySelector("#privacy-dialog");
-document.querySelector("[data-privacy]").addEventListener("click", () => {
-  privacyDialog.showModal();
-  document.body.classList.add("dialog-open");
+document.querySelectorAll("[data-privacy]").forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    privacyDialog.showModal();
+    document.body.classList.add("dialog-open");
+  });
 });
 privacyDialog
   .querySelector(".dialog-close")
@@ -64,70 +58,87 @@ privacyDialog.addEventListener("close", () =>
 const form = document.querySelector("#brief-form");
 if (form) {
   const status = document.querySelector("#form-status");
-  document.querySelector("#submit-brief").disabled = false;
-  function updateChannel() {
-    const isEmail = new FormData(form).get("channel") === "email";
-    document.querySelector("#submit-label").textContent = isEmail
-      ? "Continuar por email"
-      : "Continuar en WhatsApp";
-    document.querySelector("#form-footnote").textContent = isEmail
-      ? "Se abrirá tu aplicación de correo con el mensaje preparado. Revisa y envía cuando quieras."
-      : "Se abrirá WhatsApp con tu mensaje preparado. Tú decides cuándo enviarlo.";
+  const submit = document.querySelector("#submit-brief");
+  const submitLabel = document.querySelector("#submit-label");
+  let sending = false;
+  let sentPayload = "";
+  const payloadFor = () => Object.fromEntries(new FormData(form));
+  form.addEventListener("input", () => {
+    if (sending) return;
     status.replaceChildren();
-  }
-  form
-    .querySelectorAll('[name="channel"]')
-    .forEach((input) => input.addEventListener("change", updateChannel));
-  form.addEventListener("input", () => status.replaceChildren());
-  updateChannel();
+    submit.disabled = JSON.stringify(payloadFor()) === sentPayload;
+    submitLabel.textContent = submit.disabled
+      ? "Consulta enviada"
+      : "Enviar consulta";
+  });
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const business = String(data.get("business") || "").trim();
-    const message = String(data.get("message") || "").trim();
-    if (!name || !business || !message) {
+    if (sending || !form.reportValidity()) return;
+    for (const fieldName of ["name", "email", "message"]) {
+      const field = form.elements.namedItem(fieldName);
+      if (!field.value.trim()) {
+        status.textContent =
+          "Completa tu nombre, tu correo y una descripción del proyecto.";
+        field.focus();
+        return;
+      }
+    }
+    const payload = payloadFor();
+    if (payload._honey || JSON.stringify(payload) === sentPayload) return;
+    const snapshot = JSON.stringify(payload);
+    payload.email = payload.email.trim();
+    payload._replyto = payload.email;
+    sending = true;
+    submit.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    submitLabel.textContent = "Enviando…";
+    status.textContent = "Estamos enviando tu consulta.";
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    try {
+      const response = await fetch(form.dataset.submitUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+        credentials: "omit",
+      });
+      const result = await response.json();
+      if (
+        !response.ok ||
+        (result.success !== true && result.success !== "true") ||
+        /activat|confirm.*email|check.*inbox/i.test(
+          String(result.message || ""),
+        )
+      ) {
+        throw new Error("Submission not confirmed");
+      }
+      sentPayload = snapshot;
       status.textContent =
-        "Completa tu nombre, tu organización y una descripción del proyecto.";
-      form.elements
-        .namedItem(!name ? "name" : !business ? "business" : "message")
-        .focus();
-      return;
+        "Tu consulta se ha enviado. Gracias por escribirnos; te responderemos al correo que has indicado.";
+    } catch {
+      const fallback = document.createElement("a");
+      fallback.href = "mailto:" + CONTACT_EMAIL;
+      fallback.textContent = "Escribir directamente por email";
+      status.replaceChildren(
+        document.createTextNode(
+          "No hemos podido confirmar el envío. Tus datos siguen aquí; puedes volver a intentarlo o escribirnos por email. ",
+        ),
+        fallback,
+      );
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      form.removeAttribute("aria-busy");
+      submit.disabled = JSON.stringify(payloadFor()) === sentPayload;
+      submitLabel.textContent = submit.disabled
+        ? "Consulta enviada"
+        : "Enviar consulta";
     }
-    const brief = [
-      "Hola, Colvia. Soy " + name + ".",
-      "",
-      "Empresa u organización: " + business,
-      "Me interesa: " + data.get("service"),
-      "",
-      message,
-    ].join("\n");
-    const isEmail = data.get("channel") === "email";
-    const url = isEmail
-      ? "mailto:" +
-        CONTACT_EMAIL +
-        "?subject=" +
-        encodeURIComponent("Consulta de proyecto: " + business) +
-        "&body=" +
-        encodeURIComponent(brief)
-      : "https://wa.me/" + CONTACT_PHONE + "?text=" + encodeURIComponent(brief);
-    const fallback = document.createElement("a");
-    fallback.href = url;
-    fallback.textContent = isEmail
-      ? "Abrir el correo de nuevo"
-      : "Abrir WhatsApp de nuevo";
-    if (!isEmail) {
-      fallback.target = "_blank";
-      fallback.rel = "noopener noreferrer";
-    }
-    status.replaceChildren(
-      document.createTextNode(
-        "Mensaje preparado. Revisa y envíalo desde la aplicación. ",
-      ),
-      fallback,
-    );
-    openContactDraft(url, isEmail);
   });
 }
 

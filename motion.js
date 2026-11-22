@@ -168,8 +168,33 @@ addEventListener("resize", updateProgress);
 document.addEventListener("toggle", updateProgress, true);
 updateProgress();
 
-// Normal links remain normal: only unmodified clicks to another local HTML page
-// get the short curtain. Hash links retain native scrolling and focus behavior.
+// Keep the full entrance on direct visits and reloads, not internal navigation.
+// The one-use marker also works when the browser omits the referrer.
+const navigationKey = "colvia-internal-navigation";
+const navigationEntry = performance.getEntriesByType("navigation")[0];
+let internalArrival = false;
+try {
+  const previous = JSON.parse(sessionStorage.getItem(navigationKey) || "null");
+  sessionStorage.removeItem(navigationKey);
+  internalArrival =
+    previous?.path === location.pathname && Date.now() - previous.time < 10000;
+} catch {
+  /* Navigation must also work without session storage. */
+}
+const referrer = document.referrer ? new URL(document.referrer) : null;
+const localPages = ["./", "index.html", "conocenos.html"].map(
+  (path) => new URL(path, location.href).pathname,
+);
+internalArrival ||=
+  navigationEntry?.type === "navigate" &&
+  referrer?.origin === location.origin &&
+  localPages.includes(referrer.pathname);
+const skipEntrance =
+  navigationEntry?.type === "back_forward" ||
+  (navigationEntry?.type !== "reload" && internalArrival) ||
+  Boolean(location.hash && location.hash !== "#inicio");
+
+// Only unmodified clicks to another local page get a brief fade.
 const pageCurtain = document.createElement("div");
 pageCurtain.className = "page-curtain";
 pageCurtain.setAttribute("aria-hidden", "true");
@@ -192,29 +217,18 @@ document.body.append(pageCurtain);
 let navigating = false;
 let navigationTimer;
 let entranceTimer;
-function enterPage() {
+function enterPage(skip = false) {
   clearTimeout(navigationTimer);
   clearTimeout(entranceTimer);
   navigating = false;
   motionRoot.classList.remove("page-leaving", "page-entering", "page-to-about");
+  motionRoot.classList.toggle("page-return", skip);
   motionRoot.style.setProperty(
     "--hero-entry-offset",
-    isAboutPage ? "0s" : "1.7s",
+    isAboutPage || skip ? "0s" : "1.7s",
   );
+  if (skip) return;
   motionRoot.classList.add("page-entering");
-  if (isAboutPage) {
-    // Replay the editorial entrance when returning from the back/forward cache.
-    document
-      .querySelector(".about-hero")
-      .getAnimations({ subtree: true })
-      .filter((animation) =>
-        animation.animationName?.startsWith("about-intro-"),
-      )
-      .forEach((animation) => {
-        animation.cancel();
-        animation.play();
-      });
-  }
   entranceTimer = setTimeout(
     () => motionRoot.classList.remove("page-entering"),
     isAboutPage ? 2000 : 3200,
@@ -234,9 +248,9 @@ document
       motionRoot.classList.remove("page-entering");
     }
   });
-enterPage();
+enterPage(skipEntrance);
 addEventListener("pageshow", (event) => {
-  if (event.persisted) enterPage();
+  if (event.persisted) enterPage(true);
 });
 document.addEventListener("click", (event) => {
   if (
@@ -256,9 +270,6 @@ document.addEventListener("click", (event) => {
   )
     return;
   const destination = new URL(link.href, location.href);
-  const localPages = ["./", "index.html", "conocenos.html"].map(
-    (path) => new URL(path, location.href).pathname,
-  );
   if (
     destination.origin !== location.origin ||
     !localPages.includes(destination.pathname)
@@ -269,13 +280,18 @@ document.addEventListener("click", (event) => {
   event.preventDefault();
   if (navigating) return;
   navigating = true;
+  try {
+    sessionStorage.setItem(
+      navigationKey,
+      JSON.stringify({ path: destination.pathname, time: Date.now() }),
+    );
+  } catch {
+    /* Referrer and history detection remain available. */
+  }
   clearTimeout(entranceTimer);
   motionRoot.classList.remove("page-entering");
   const goingToAbout = destination.pathname.endsWith("/conocenos.html");
   motionRoot.classList.toggle("page-to-about", goingToAbout);
   motionRoot.classList.add("page-leaving");
-  navigationTimer = setTimeout(
-    () => location.assign(destination.href),
-    goingToAbout ? 380 : 540,
-  );
+  navigationTimer = setTimeout(() => location.assign(destination.href), 160);
 });
