@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="why-colvia.css?v=20261122-why4" />
     <link rel="stylesheet" href="portfolio.css?v=20261121-portfolio3" />
     <link rel="stylesheet" href="motion.css?v=20261122-entrance2" />
+    <link rel="stylesheet" href="hero.css?v=20261122-hero1" />
     <script src="app.js?v=20261121-contact3" defer></script>
     <script src="motion.js?v=20261122-entrance2" defer></script>
   </head>
@@ -80,17 +81,16 @@
       </div>
     </header>
     <main id="contenido">
-      <div class="hero-shell">
+      <div class="hero-shell hero-renewed">
         <section class="hero wrap" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">DESARROLLO DE SOFTWARE Y SOLUCIONES DIGITALES</p>
+            <p class="eyebrow">SOFTWARE A MEDIDA · WEB · INTEGRACIÓN</p>
             <h1 id="hero-title">
-              Software a medida. <br />Para trabajar <br /><span>mejor.</span>
+              Tu forma<br />de trabajar.<br /><span>Hecha software.</span>
             </h1>
             <p class="hero-description">
-              Desarrollamos herramientas internas, aplicaciones y webs para
-              empresas, comercios y organismos públicos. Menos tareas manuales,
-              información conectada y tecnología adaptada a tu actividad.
+              Tu negocio tiene su manera de hacer las cosas.
+              Creamos las webs, aplicaciones y herramientas que encajan contigo.
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#contacto"
@@ -109,81 +109,33 @@
               ></a
             >
           </div>
-          <figure
-            class="hero-visual"
-            aria-label="Ejemplo conceptual de una aplicación para organizar solicitudes; no es una captura de un proyecto de cliente"
-          >
-            <div class="system-canvas" aria-hidden="true">
-              <div class="canvas-heading">
-                <span>UNA NECESIDAD. UNA SOLUCIÓN.</span
-                ><svg viewBox="0 0 64 64">
-                  <use href="assets/colvia-mark.svg#colvia-mark" />
-                </svg>
+          <figure class="hero-visual solution-visual" aria-labelledby="solution-caption">
+            <div class="system-canvas solution-map">
+              <div class="solution-grid" aria-hidden="true"></div>
+              <div class="solution-orbit orbit-outer" aria-hidden="true"></div>
+              <div class="solution-orbit orbit-inner" aria-hidden="true"></div>
+              <svg class="solution-paths" viewBox="0 0 540 540" fill="none" aria-hidden="true">
+                <path d="M270 270 L140 116 M270 270 L424 248 M270 270 L195 433" />
+                <path class="solution-signal" d="M140 116 L270 270 L424 248 M270 270 L195 433" />
+              </svg>
+              <div class="solution-core" aria-hidden="true">
+                <svg viewBox="0 0 64 64"><use href="assets/colvia-mark.svg#colvia-mark" /></svg>
               </div>
-              <div class="application-preview">
-                <div class="app-topbar">
-                  <span class="app-monogram"
-                    ><svg viewBox="0 0 64 64">
-                      <use
-                        href="assets/colvia-mark.svg#colvia-mark"
-                      /></svg></span
-                  ><span>Espacio de trabajo</span
-                  ><span class="app-avatar">EQ</span>
-                </div>
-                <div class="app-body">
-                  <div class="app-sidebar">
-                    <span class="sidebar-icon selected">▦</span
-                    ><span class="sidebar-icon">≡</span
-                    ><span class="sidebar-icon">⌑</span
-                    ><span class="sidebar-icon">+</span>
-                  </div>
-                  <div class="app-content">
-                    <div class="app-breadcrumb">Organización / Gestión</div>
-                    <div class="app-title">
-                      <span>Solicitudes</span
-                      ><span class="app-add">+ Nueva</span>
-                    </div>
-                    <div class="app-tabs">
-                      <span class="active">Todas</span><span>Pendientes</span
-                      ><span>Resueltas</span>
-                    </div>
-                    <div class="app-table-head">
-                      <span>Descripción</span><span>Estado</span>
-                    </div>
-                    <div class="app-table-row">
-                      <span><i></i>Solicitud de material</span
-                      ><b class="state-review">En revisión</b>
-                    </div>
-                    <div class="app-table-row">
-                      <span><i></i>Actualización de registro</span
-                      ><b class="state-done">Resuelta</b>
-                    </div>
-                    <div class="app-table-row">
-                      <span><i></i>Consulta del equipo</span
-                      ><b class="state-new">Pendiente</b>
-                    </div>
-                    <div class="app-table-row muted-row">
-                      <span><i></i>Acceso a documentación</span
-                      ><b class="state-review">En revisión</b>
-                    </div>
-                  </div>
-                </div>
+              <div class="solution-node solution-web">
+                <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="5" y="7" width="30" height="26" rx="3"/><path d="M5 15h30M11 11h1m3 0h1M11 21h10m-10 5h16"/></svg>
+                <div><span>PARA MOSTRARTE</span><strong>Tu web.</strong></div>
               </div>
-              <div class="integration-card">
-                <span class="integration-icon" aria-hidden="true">+</span>
-                <div>
-                  <strong>Todo en su sitio.</strong
-                  ><span>Personas, procesos e información.</span>
-                </div>
+              <div class="solution-node solution-work">
+                <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="7" y="5" width="26" height="30" rx="3"/><path d="m12 14 2 2 4-4m-6 12 2 2 4-4m4-8h5m-5 10h5"/></svg>
+                <div><span>PARA ORGANIZARTE</span><strong>Tu gestión.</strong></div>
               </div>
-              <div class="canvas-bottom">
-                <span>DISEÑO</span><i></i><span>DESARROLLO</span><i></i
-                ><span>INTEGRACIÓN</span>
+              <div class="solution-node solution-connect">
+                <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="4" y="5" width="12" height="12" rx="3"/><rect x="24" y="23" width="12" height="12" rx="3"/><path d="M16 11h8a6 6 0 0 1 6 6v6M24 29h-8a6 6 0 0 1-6-6v-6"/></svg>
+                <div><span>PARA SIMPLIFICAR</span><strong>Todo conectado.</strong></div>
               </div>
+              <span class="solution-signature" aria-hidden="true">DISEÑADO ALREDEDOR DE TI</span>
             </div>
-            <figcaption class="visual-caption">
-              <span>Ejemplo de interfaz · Datos ilustrativos</span>
-            </figcaption>
+            <figcaption id="solution-caption">Distintas herramientas. <span>Una misma forma de pensar.</span></figcaption>
           </figure>
         </section>
       </div>
