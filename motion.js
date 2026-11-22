@@ -168,7 +168,8 @@ addEventListener("resize", updateProgress);
 document.addEventListener("toggle", updateProgress, true);
 updateProgress();
 
-// Keep the full entrance on direct visits and reloads, not internal navigation.
+// Keep Conócenos' editorial entrance when following a link. Only the home
+// brand introduction is skipped on internal navigation; history skips both.
 // The one-use marker also works when the browser omits the referrer.
 const navigationKey = "colvia-internal-navigation";
 const navigationEntry = performance.getEntriesByType("navigation")[0];
@@ -191,7 +192,7 @@ internalArrival ||=
   localPages.includes(referrer.pathname);
 const skipEntrance =
   navigationEntry?.type === "back_forward" ||
-  (navigationEntry?.type !== "reload" && internalArrival) ||
+  (navigationEntry?.type !== "reload" && internalArrival && !isAboutPage) ||
   Boolean(location.hash && location.hash !== "#inicio");
 
 // Only unmodified clicks to another local page get a brief fade.
