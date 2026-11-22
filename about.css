@@ -98,12 +98,15 @@
   gap: 28px;
 }
 .founder-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: white;
   border-radius: 6px;
   overflow: hidden;
 }
 .founder-portrait {
+  flex-shrink: 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--ink);
@@ -167,6 +170,9 @@
   margin-right: 20px;
 }
 .founder-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 28px 36px 32px;
   background: white;
   border-top: 1px solid var(--line);
@@ -192,10 +198,12 @@
 }
 .founder-copy .text-link {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: 8px;
-  min-height: 44px;
-  margin-top: 18px;
+  min-height: 62px;
+  padding-top: 18px;
+  margin-top: auto;
 }
 .principles-grid {
   display: grid;
