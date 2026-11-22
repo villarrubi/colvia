@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /versiones.html
+
+Sitemap: https://villarrubi.github.io/colvia/sitemap.xml
