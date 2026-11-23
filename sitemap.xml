@@ -3,19 +3,23 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://villarrubi.github.io/colvia/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <image:image>
       <image:loc>https://villarrubi.github.io/colvia/assets/og-colvia.png</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://villarrubi.github.io/colvia/conocenos.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <image:image>
       <image:loc>https://villarrubi.github.io/colvia/assets/alejandro-desarrollando.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://villarrubi.github.io/colvia/assets/gonzalo-desarrollando.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://villarrubi.github.io/colvia/privacidad.html</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
 </urlset>

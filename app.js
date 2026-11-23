@@ -1,5 +1,6 @@
 // Public business contact. FormSubmit requires one-time recipient activation.
 const CONTACT_EMAIL = "avillarrubia2@gmail.com";
+document.documentElement.classList.add("js-ready");
 
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#navigation");
@@ -31,29 +32,40 @@ window.matchMedia("(min-width: 1101px)").addEventListener("change", closeMenu);
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 const privacyDialog = document.querySelector("#privacy-dialog");
-document.querySelectorAll("[data-privacy]").forEach((trigger) => {
-  trigger.addEventListener("click", () => {
-    privacyDialog.showModal();
-    document.body.classList.add("dialog-open");
+if (privacyDialog) {
+  document.querySelectorAll("[data-privacy]").forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      event.preventDefault();
+      privacyDialog.showModal();
+      document.body.classList.add("dialog-open");
+    });
   });
-});
-privacyDialog
-  .querySelector(".dialog-close")
-  .addEventListener("click", () => privacyDialog.close());
-privacyDialog.addEventListener("click", (event) => {
-  const bounds = privacyDialog.getBoundingClientRect();
-  if (
-    event.target === privacyDialog &&
-    (event.clientX < bounds.left ||
-      event.clientX > bounds.right ||
-      event.clientY < bounds.top ||
-      event.clientY > bounds.bottom)
-  )
-    privacyDialog.close();
-});
-privacyDialog.addEventListener("close", () =>
-  document.body.classList.remove("dialog-open"),
-);
+  privacyDialog
+    .querySelector(".dialog-close")
+    .addEventListener("click", () => privacyDialog.close());
+  privacyDialog.addEventListener("click", (event) => {
+    const bounds = privacyDialog.getBoundingClientRect();
+    if (
+      event.target === privacyDialog &&
+      (event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom)
+    )
+      privacyDialog.close();
+  });
+  privacyDialog.addEventListener("close", () =>
+    document.body.classList.remove("dialog-open"),
+  );
+}
 
 const form = document.querySelector("#brief-form");
 if (form) {
@@ -137,8 +149,11 @@ if (form) {
       sentPayload = snapshot;
       status.textContent =
         "Tu consulta se ha enviado. Gracias por escribirnos; te responderemos al correo que has indicado.";
-      return "Consulta enviada a Colvia. El equipo responderá por email a " +
-        payload.email + ".";
+      return (
+        "Consulta enviada a Colvia. El equipo responderá por email a " +
+        payload.email +
+        "."
+      );
     } catch {
       const fallback = document.createElement("a");
       fallback.href = "mailto:" + CONTACT_EMAIL;
@@ -150,7 +165,8 @@ if (form) {
         fallback,
       );
       throw new Error(
-        "No se pudo confirmar el envío. Escribe a " + CONTACT_EMAIL +
+        "No se pudo confirmar el envío. Escribe a " +
+          CONTACT_EMAIL +
           " o por WhatsApp al +34 633 58 60 60.",
       );
     } finally {

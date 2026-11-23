@@ -410,3 +410,27 @@
     inset: 35px;
   }
 }
+
+.portfolio-note { color: #c2c9bb; font-size: .875rem; margin-top: 24px; max-width: 76ch; }
+.platform-window { position: absolute; width: 190px; height: 150px; right: 30px; top: 24px; padding: 20px; background: #f5eedb; border: 1px solid #e5d3ad; border-radius: 8px; transform: rotate(7deg); box-shadow: 0 14px 30px #43201730; }
+.platform-window span { display: block; width: 60%; height: 10px; background: #98482f; margin-bottom: 18px; }
+.platform-window i { display: block; height: 12px; margin-top: 10px; border-left: 12px solid #7e963f; background: #dfd3b9; }
+.portfolio-section .case-type { font-size: .875rem; letter-spacing: .045em; }
+@media (max-width: 650px) {
+  .portfolio-preview { height: 165px; }
+  .portfolio-copy { padding: 22px; }
+  .portfolio-copy h3 { font-size: 27px; margin-bottom: 14px; }
+  .sector-visual-word { font-size: 25px; bottom: 18px; left: 22px; max-width: 64%; }
+  .sector-paper, .sector-paper-back { width: 105px; height: 130px; top: 12px; right: 20px; padding: 12px; }
+  .sector-paper span { font-size: 38px; margin-bottom: 12px; }
+  .sector-paper-back { top: 25px; right: 5px; }
+  .platform-window { width: 132px; height: 112px; right: 18px; top: 12px; padding: 12px; }
+  .platform-window span { height: 6px; margin-bottom: 10px; }
+  .platform-window i { height: 9px; margin-top: 8px; }
+  .community-orbit { width: 100px; height: 100px; top: 14px; right: 18px; }
+  .community-orbit > i:nth-child(1), .community-orbit > i:nth-child(3) { left: 30px; }
+  .community-orbit > i:nth-child(2), .community-orbit > i:nth-child(4) { top: 30px; }
+  .community-orbit > span { inset: 30px; }
+  .health-orbit { width: 95px; height: 95px; top: 12px; right: 18px; }
+  .portfolio-note { margin-top: 20px; }
+}

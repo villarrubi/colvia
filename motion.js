@@ -3,6 +3,60 @@ const motionRoot = document.documentElement;
 const isAboutPage = Boolean(document.querySelector(".about-hero"));
 motionRoot.classList.toggle("page-about", isAboutPage);
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let motionPaused = false;
+try {
+  motionPaused = sessionStorage.getItem("colvia-motion-choice") === "off";
+} catch {
+  /* Preferences are optional when storage is unavailable. */
+}
+const motionToggle = document.createElement("button");
+motionToggle.type = "button";
+motionToggle.className = "motion-toggle";
+motionToggle.innerHTML =
+  '<span class="motion-toggle-icon" aria-hidden="true"></span><span class="motion-toggle-label"></span>';
+document.querySelector(".header-shell").after(motionToggle);
+function motionDisabled() {
+  return reducedMotion.matches || motionPaused;
+}
+function applyMotionPreference() {
+  const disabled = motionDisabled();
+  motionRoot.classList.toggle("motion-reduced", disabled);
+  motionToggle.disabled = reducedMotion.matches;
+  const label = reducedMotion.matches
+    ? "Movimiento reducido"
+    : motionPaused
+      ? "Reanudar animaciones"
+      : "Pausar animaciones";
+  motionToggle.setAttribute("aria-label", label);
+  motionToggle.title = reducedMotion.matches
+    ? "Según la preferencia de tu dispositivo"
+    : label;
+  motionToggle.querySelector(".motion-toggle-label").textContent = label;
+  if (disabled) {
+    motionRoot.classList.remove(
+      "page-entering",
+      "page-arriving",
+      "page-leaving",
+    );
+    motionRoot.classList.add("page-return");
+    document.querySelectorAll(".will-reveal").forEach(reveal);
+    document.querySelectorAll("[style]").forEach((element) => {
+      element.style.removeProperty("--tilt-x");
+      element.style.removeProperty("--tilt-y");
+      element.style.removeProperty("--section-travel");
+    });
+  }
+}
+motionToggle.addEventListener("click", () => {
+  motionPaused = !motionPaused;
+  try {
+    sessionStorage.setItem("colvia-motion-choice", motionPaused ? "off" : "on");
+  } catch {}
+  applyMotionPreference();
+});
+reducedMotion.addEventListener("change", applyMotionPreference);
+applyMotionPreference();
 // Give lists their own rhythm instead of revealing a whole block at once.
 document
   .querySelectorAll(
@@ -10,8 +64,7 @@ document
   )
   .forEach((element) => element.classList.add("reveal"));
 const revealElements = document.querySelectorAll(".reveal");
-// Motion is always enabled on each page, including old links and sessions.
-motionRoot.classList.add("motion-force", "motion-ready");
+motionRoot.classList.add("motion-ready");
 
 function reveal(element) {
   element.classList.remove("will-reveal");
@@ -23,7 +76,7 @@ const revealObserver =
     ? new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting || motionDisabled()) {
               reveal(entry.target);
             } else if (!entry.target.contains(document.activeElement)) {
               entry.target.classList.add("will-reveal");
@@ -49,7 +102,11 @@ revealElements.forEach((element) => {
     element.dataset.motionDirection =
       siblings.indexOf(element) % 2 ? "right" : "left";
   }
-  if (revealObserver && element.getBoundingClientRect().top >= innerHeight) {
+  if (
+    !motionDisabled() &&
+    revealObserver &&
+    element.getBoundingClientRect().top >= innerHeight
+  ) {
     element.classList.add("will-reveal");
   } else {
     reveal(element);
@@ -121,7 +178,7 @@ document
   .forEach((canvas) => {
     let pointerFrame = 0;
     canvas.addEventListener("pointermove", (event) => {
-      if (!finePointer.matches) return;
+      if (!finePointer.matches || motionDisabled()) return;
       cancelAnimationFrame(pointerFrame);
       pointerFrame = requestAnimationFrame(() => {
         const bounds = canvas.getBoundingClientRect();
@@ -148,6 +205,7 @@ function updateProgress() {
     const progress = range > 0 ? Math.min(1, Math.max(0, scrollY / range)) : 0;
     if (readingProgress)
       readingProgress.style.transform = `scaleX(${progress})`;
+    if (motionDisabled()) return;
     motionSections.forEach((section) => {
       const bounds = section.getBoundingClientRect();
       if (bounds.bottom < 0 || bounds.top > innerHeight) return;
@@ -194,6 +252,7 @@ internalArrival ||=
   referrer?.origin === location.origin &&
   localPages.includes(referrer.pathname);
 const skipEntrance =
+  motionDisabled() ||
   // If rendering already started (unsupported render blocking or its timeout),
   // do not hide visible content just to replay an entrance.
   alreadyPainted ||
@@ -232,15 +291,20 @@ function enterPage(skip = false, transition = false) {
   motionRoot.classList.toggle("page-return", skip);
   motionRoot.style.setProperty(
     "--hero-entry-offset",
-    isAboutPage || skip ? "0s" : "1.7s",
+    isAboutPage || skip ? "0s" : "0.35s",
   );
   if (skip) {
     if (
-      transition && !nativePageTransitions && !alreadyPainted && !location.hash
+      !motionDisabled() &&
+      transition &&
+      !nativePageTransitions &&
+      !alreadyPainted &&
+      !location.hash
     ) {
       motionRoot.classList.add("page-arriving");
       entranceTimer = setTimeout(
-        () => motionRoot.classList.remove("page-arriving"), 500,
+        () => motionRoot.classList.remove("page-arriving"),
+        500,
       );
     }
     return;
@@ -248,7 +312,7 @@ function enterPage(skip = false, transition = false) {
   motionRoot.classList.add("page-entering");
   entranceTimer = setTimeout(
     () => motionRoot.classList.remove("page-entering"),
-    isAboutPage ? 2000 : 3200,
+    isAboutPage ? 1200 : 1400,
   );
 }
 pageCurtain.addEventListener("animationend", (event) => {
@@ -265,7 +329,10 @@ document
       motionRoot.classList.remove("page-entering");
     }
   });
-enterPage(skipEntrance, internalArrival && navigationEntry?.type === "navigate");
+enterPage(
+  skipEntrance,
+  internalArrival && navigationEntry?.type === "navigate",
+);
 addEventListener("pageshow", (event) => {
   if (event.persisted) enterPage(true);
 });
@@ -309,7 +376,7 @@ document.addEventListener("click", (event) => {
   }
   // Let the browser keep the old page visible until the new one is ready,
   // then crossfade their snapshots. There is no extra navigation delay.
-  if (nativePageTransitions) return;
+  if (nativePageTransitions || motionDisabled()) return;
   event.preventDefault();
   clearTimeout(entranceTimer);
   motionRoot.classList.remove("page-entering", "page-arriving");

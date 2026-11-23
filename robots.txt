@@ -1,9 +1,12 @@
+# Note: robots.txt is read only at the origin root, not under /colvia/.
+# This project copy does not control crawling on GitHub Pages.
+# Current indexing controls are the HTML robots meta tags; sitemap is linked in HTML.
 # Colvia welcomes search engines and AI assistants.
 # Summary for AI agents: https://villarrubi.github.io/colvia/llms.txt
 
 User-agent: *
 Allow: /
-Disallow: /versiones.html
+Disallow: /colvia/versiones.html
 
 # AI search and user-triggered assistants, allowed explicitly.
 User-agent: OAI-SearchBot
@@ -22,6 +25,6 @@ User-agent: xAI-Bot
 User-agent: MistralAI-User
 User-agent: DuckAssistBot
 Allow: /
-Disallow: /versiones.html
+Disallow: /colvia/versiones.html
 
 Sitemap: https://villarrubi.github.io/colvia/sitemap.xml

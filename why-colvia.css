@@ -249,3 +249,14 @@
     margin-left: 0;
   }
 }
+
+@media (max-width: 650px) {
+  .why-benefit-card { padding: 22px; }
+  .why-benefit-card h3 { margin-bottom: 12px; }
+  .why-card-label { margin-bottom: 14px; }
+  .why-process { padding: 26px 22px; }
+  .why-process-heading { gap: 18px; }
+  .why-process .process-list { gap: 22px; margin-top: 24px; }
+  .why-process .process-line { margin-bottom: 12px; }
+  .why-team { padding: 22px; }
+}

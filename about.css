@@ -360,3 +360,13 @@
     font-size: 0.625rem;
   }
 }
+
+@media (max-width: 600px) {
+  .about-hero-grid { padding-block: 36px 40px; gap: 20px; }
+  .emblem-stage { min-height: 235px; }
+  .emblem-symbol { width: 150px; height: 150px; }
+  .emblem-orbit { width: 190px; height: 190px; }
+  .orbit-two { width: 230px; height: 230px; }
+  .principles-grid { gap: 26px; }
+  .about-experience-grid { gap: 24px; }
+}

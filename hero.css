@@ -152,3 +152,14 @@
   .studio-label > span { width: 20px; }
   .hero-renewed .studio-visual figcaption { margin-top: 18px; line-height: 1.5; }
 }
+
+@media (max-width: 600px) {
+  .hero-renewed .hero { padding-block: 34px; gap: 28px; }
+  .hero-renewed .hero .eyebrow { margin-bottom: 20px; }
+  .hero-renewed .hero-team { margin-top: 22px; }
+  .studio-scene.system-canvas { height: 480px; }
+  .studio-web-content { padding-block: 18px; }
+  .studio-workspace { padding: 14px 16px; }
+  .studio-workspace > strong { font-size: 25px; margin-bottom: 10px; }
+  .studio-task { padding-block: 7px; }
+}
