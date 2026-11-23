@@ -72,23 +72,40 @@ if (form) {
       : "Enviar consulta";
   });
 
-  form.addEventListener("submit", async (event) => {
+  // Browser agents (WebMCP) fill this form as a tool; they get the result back.
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (sending || !form.reportValidity()) return;
+    const result = sendBrief(event.agentInvoked === true);
+    if (event.agentInvoked && typeof event.respondWith === "function") {
+      event.respondWith(result);
+    } else {
+      result.catch(() => {}); // The status message already explains it.
+    }
+  });
+
+  async function sendBrief(fromAgent) {
+    if (sending) return "Ya se está enviando una consulta.";
+    if (!form.reportValidity()) {
+      throw new Error("Faltan campos obligatorios o algún dato no es válido.");
+    }
     for (const fieldName of ["name", "email", "message"]) {
       const field = form.elements.namedItem(fieldName);
       if (!field.value.trim()) {
         status.textContent =
           "Completa tu nombre, tu correo y una descripción del proyecto.";
         field.focus();
-        return;
+        throw new Error("Faltan el nombre, el correo o la descripción.");
       }
     }
     const payload = payloadFor();
-    if (payload._honey || JSON.stringify(payload) === sentPayload) return;
+    if (payload._honey) throw new Error("Envío bloqueado.");
+    if (JSON.stringify(payload) === sentPayload) {
+      return "Esta consulta ya se había enviado a Colvia.";
+    }
     const snapshot = JSON.stringify(payload);
     payload.email = payload.email.trim();
     payload._replyto = payload.email;
+    if (fromAgent) payload.canal = "Asistente de IA del cliente";
     sending = true;
     submit.disabled = true;
     form.setAttribute("aria-busy", "true");
@@ -120,6 +137,8 @@ if (form) {
       sentPayload = snapshot;
       status.textContent =
         "Tu consulta se ha enviado. Gracias por escribirnos; te responderemos al correo que has indicado.";
+      return "Consulta enviada a Colvia. El equipo responderá por email a " +
+        payload.email + ".";
     } catch {
       const fallback = document.createElement("a");
       fallback.href = "mailto:" + CONTACT_EMAIL;
@@ -130,6 +149,10 @@ if (form) {
         ),
         fallback,
       );
+      throw new Error(
+        "No se pudo confirmar el envío. Escribe a " + CONTACT_EMAIL +
+          " o por WhatsApp al +34 633 58 60 60.",
+      );
     } finally {
       clearTimeout(timeout);
       sending = false;
@@ -139,7 +162,7 @@ if (form) {
         ? "Consulta enviada"
         : "Enviar consulta";
     }
-  });
+  }
 }
 
 // Non-modal contact disclosure: native links still work without JavaScript.

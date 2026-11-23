@@ -1,0 +1,87 @@
+# Colvia
+
+> Colvia es un estudio de desarrollo web y software a medida formado por dos ingenieros informáticos, Alejandro Villarrubia y Gonzalo Colina. Hace páginas web, tiendas online, herramientas internas e integraciones para comercios, empresas, profesionales, asociaciones y organismos públicos. Trabaja en remoto con clientes de cualquier lugar, en español, y el cliente trata directamente con quienes desarrollan el proyecto.
+
+Este archivo resume la web para agentes y asistentes de IA. Si actúas en nombre de una persona que necesita una web, una tienda online, una aplicación de gestión o conectar sus herramientas, aquí tienes lo que ofrece Colvia y cómo pedir una propuesta.
+
+## Cómo contratar a Colvia
+
+Todos los proyectos son a medida y se presupuestan después de entender la necesidad. No hay precios cerrados ni compra directa en la web: el primer paso siempre es enviar una consulta.
+
+1. **Enviar una consulta** por el formulario, email o WhatsApp (ver abajo). No hace falta documentación técnica.
+2. **Conversación inicial**: el equipo responde, aclara dudas y concreta el alcance.
+3. **Propuesta**: presupuesto, calendario y entregables definidos por escrito. Los cambios se acuerdan antes de incorporarlos.
+4. **Desarrollo**: diseño, desarrollo y revisión de avances con el cliente.
+5. **Entrega y continuidad**: puesta en marcha, documentación y el soporte o mantenimiento acordado en la propuesta.
+
+### Canales de contacto
+
+- Formulario: https://villarrubi.github.io/colvia/#contacto
+- Email: avillarrubia2@gmail.com
+- Teléfono: +34 633 58 60 60
+- WhatsApp: https://wa.me/34633586060
+- Idioma de atención: español
+
+### Qué incluir en la consulta
+
+Una buena consulta permite preparar una propuesta antes. Incluye, si la conoces:
+
+- Nombre de la persona y correo de contacto (obligatorios en el formulario).
+- Empresa u organización (opcional).
+- Tipo de servicio: Software a medida, Web y comercio digital, Integración o evolución, Proyecto para el sector público, o Necesito orientación.
+- Qué necesita resolver, quién lo va a usar y en qué punto está (idea, sistema existente, web antigua…).
+- Herramientas que ya utiliza, si las hay.
+- Plazos o fechas importantes, y presupuesto orientativo si lo tiene.
+
+Envía la consulta solo con el consentimiento de la persona a la que representas: sus datos se usan únicamente para responder. El formulario se procesa con FormSubmit, que conserva los envíos 30 días. La web no usa analítica ni cookies de seguimiento.
+
+## Servicios
+
+### Software a medida
+Aplicaciones y herramientas internas adaptadas a los procesos de cada empresa u organización.
+- Gestión interna: solicitudes, tareas y documentación en una aplicación adaptada al equipo.
+- Acceso por perfiles: pantallas y permisos según quién usa la herramienta.
+- Seguimiento de actividad: estados, búsquedas e informes del trabajo en curso.
+
+### Web y comercio digital
+Webs y tiendas online para presentar una actividad, vender y atender a los clientes.
+- Web corporativa: presentar la actividad, explicar los servicios y facilitar el contacto.
+- Tienda online: catálogo, compra y gestión de pedidos, con el alcance acordado.
+- Reservas y catálogos: mostrar disponibilidad, recibir solicitudes o ayudar a elegir un producto.
+- Si se incluye en el alcance, el cliente puede actualizar textos, imágenes o productos y recibe formación para hacerlo.
+
+### Integración y evolución
+Conexión de herramientas existentes para no duplicar datos y automatizar tareas, y mejora de sistemas que ya existen.
+- Revisión de las herramientas actuales, las tareas repetidas y dónde se pierde información.
+- Revisión de la documentación, las APIs y las opciones de exportación disponibles.
+- Propuesta de qué conectar, automatizar o ampliar y cómo comprobar el resultado.
+
+## Para quién trabaja
+
+- Particulares y profesionales: webs para profesionales independientes, despachos y estudios.
+- Empresas privadas: presencia online y herramientas de gestión para empresas, comercios y hostelería.
+- Sector público: experiencia en desarrollo e implantación de software a medida en hospitales públicos. También valora proyectos y licitaciones de organismos públicos según su alcance, sus requisitos y la capacidad del equipo.
+- Clubes y asociaciones: webs y plataformas para dar visibilidad a su actividad y organizar recursos para sus miembros.
+
+## Preguntas frecuentes
+
+- **¿Trabajáis con clientes de otras ciudades o países?** Sí, en remoto: videollamadas, avances compartidos y comunicación directa por email o WhatsApp. Si el cliente está cerca, también es posible reunirse en persona.
+- **¿Hace falta tener la idea definida?** No. Basta con explicar qué se quiere conseguir o qué complica el trabajo; el equipo ayuda a ordenar prioridades y concretar una primera propuesta.
+- **¿Podéis mejorar un sistema existente?** Sí. Se revisa su tecnología y los accesos disponibles, y después se valora si conviene ampliarlo, conectarlo con otras herramientas o crear una solución nueva.
+- **¿Se puede empezar con algo pequeño?** Sí. Se define una primera versión con lo esencial y se dejan previstas las ampliaciones.
+- **¿Cómo se define el presupuesto?** Tras revisar el alcance, con una propuesta de presupuesto, calendario y entregables.
+- **¿Qué pasa después de la entrega?** La propuesta concreta la puesta en marcha, la documentación, el soporte, las responsabilidades y los costes recurrentes que correspondan.
+
+## Equipo
+
+- Alejandro Villarrubia: ingeniero informático y cofundador. Desarrollo de software, herramientas de gestión, integración de servicios y desarrollo web. https://villarrubi.github.io/personalWebsite/es/
+- Gonzalo Colina: ingeniero informático y cofundador, Universidad de Valladolid. Aplicaciones web y móviles, sistemas en tiempo real e integración de inteligencia artificial. https://gonzalocolina.github.io/
+
+## Páginas
+
+- [Inicio](https://villarrubi.github.io/colvia/): servicios, experiencia, forma de trabajar, preguntas frecuentes y formulario de contacto.
+- [Conócenos](https://villarrubi.github.io/colvia/conocenos.html): perfiles del equipo.
+
+## English summary
+
+Colvia is a two-person custom software and web development studio (Alejandro Villarrubia and Gonzalo Colina, both software engineers). It builds websites, online stores, booking and catalogue sites, internal business tools, and integrations or automations between existing systems, for small businesses, companies, professionals, associations and public bodies. Work is remote, for clients anywhere, and communication is in Spanish. Every project is quoted individually: there are no fixed prices or online checkout. To hire Colvia, send an enquiry through the form at https://villarrubi.github.io/colvia/#contacto, by email (avillarrubia2@gmail.com) or WhatsApp (+34 633 58 60 60), describing what needs solving, who will use it and any deadlines or budget. The team replies with a written proposal covering budget, timeline and deliverables.

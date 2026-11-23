@@ -37,6 +37,12 @@
       content="Colvia. Desarrollo web y software a medida."
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href="llms.txt"
+      title="Resumen de Colvia para agentes de IA"
+    />
     <link rel="icon" href="favicon.svg?v=7" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <script type="application/ld+json">
@@ -66,6 +72,7 @@
               { "@id": "https://villarrubi.github.io/colvia/conocenos.html#gonzalo-colina" }
             ],
             "knowsLanguage": "es",
+            "areaServed": "Todo el mundo, en remoto",
             "knowsAbout": [
               "Diseño web",
               "Desarrollo web",
@@ -81,25 +88,40 @@
               "itemListElement": [
                 {
                   "@type": "Offer",
+                  "url": "https://villarrubi.github.io/colvia/#contacto",
                   "itemOffered": {
                     "@type": "Service",
                     "name": "Software a medida",
+                    "serviceType": "Software a medida",
+                    "provider": { "@id": "https://villarrubi.github.io/colvia/#organization" },
+                    "areaServed": "Todo el mundo, en remoto",
+                    "url": "https://villarrubi.github.io/colvia/#servicios",
                     "description": "Aplicaciones y herramientas internas adaptadas a los procesos de cada empresa u organización."
                   }
                 },
                 {
                   "@type": "Offer",
+                  "url": "https://villarrubi.github.io/colvia/#contacto",
                   "itemOffered": {
                     "@type": "Service",
                     "name": "Diseño de páginas web y tiendas online",
+                    "serviceType": "Diseño de páginas web y tiendas online",
+                    "provider": { "@id": "https://villarrubi.github.io/colvia/#organization" },
+                    "areaServed": "Todo el mundo, en remoto",
+                    "url": "https://villarrubi.github.io/colvia/#servicios",
                     "description": "Webs corporativas, tiendas online, reservas y catálogos para comercios y negocios locales."
                   }
                 },
                 {
                   "@type": "Offer",
+                  "url": "https://villarrubi.github.io/colvia/#contacto",
                   "itemOffered": {
                     "@type": "Service",
                     "name": "Integración y automatización",
+                    "serviceType": "Integración y automatización",
+                    "provider": { "@id": "https://villarrubi.github.io/colvia/#organization" },
+                    "areaServed": "Todo el mundo, en remoto",
+                    "url": "https://villarrubi.github.io/colvia/#servicios",
                     "description": "Conexión de herramientas existentes para evitar duplicar datos y automatizar tareas."
                   }
                 }
@@ -107,7 +129,10 @@
             },
             "contactPoint": {
               "@type": "ContactPoint",
-              "contactType": "customer service",
+              "contactType": "sales",
+              "description": "Solicitud de propuesta y presupuesto para un proyecto. Formulario, email, teléfono o WhatsApp.",
+              "url": "https://villarrubi.github.io/colvia/#contacto",
+              "areaServed": "Todo el mundo, en remoto",
               "telephone": "+34 633 58 60 60",
               "email": "avillarrubia2@gmail.com",
               "availableLanguage": "es"
@@ -197,7 +222,7 @@
     <link rel="stylesheet" href="portfolio.css?v=20261121-portfolio3" />
     <link rel="stylesheet" href="motion.css?v=20261122-contact-navigation" />
     <link rel="stylesheet" href="hero.css?v=20261122-studio1" />
-    <script src="app.js?v=20261122-contact-navigation" defer></script>
+    <script src="app.js?v=20261123-agents" defer></script>
     <script src="motion.js?v=20261122-about-entrance" defer></script>
   </head>
   <body>
@@ -891,6 +916,8 @@
             action="https://formsubmit.co/avillarrubia2@gmail.com"
             method="POST"
             data-submit-url="https://formsubmit.co/ajax/avillarrubia2@gmail.com"
+            toolname="solicitar_propuesta_colvia"
+            tooldescription="Envía a Colvia una consulta para pedir propuesta y presupuesto de una web, tienda online, software a medida o integración. Úsala cuando la persona quiera contratar o consultar un proyecto. Colvia responde por email."
           >
             <h3>Hablemos de tu proyecto.</h3>
             <p class="form-intro">
@@ -915,6 +942,7 @@
                 >Tu nombre<input
                   id="name"
                   name="name"
+                  toolparamdescription="Nombre y apellidos de la persona que hace la consulta."
                   autocomplete="name"
                   placeholder="Nombre y apellidos"
                   required
@@ -924,6 +952,7 @@
                 >Tu correo electrónico<input
                   id="email"
                   name="email"
+                  toolparamdescription="Correo donde la persona quiere recibir la respuesta."
                   type="email"
                   autocomplete="email"
                   placeholder="nombre@ejemplo.com"
@@ -935,13 +964,18 @@
               >Empresa u organización (opcional)<input
                 id="business"
                 name="business"
+                toolparamdescription="Nombre del negocio, empresa u organismo, si lo hay."
                 autocomplete="organization"
                 placeholder="Nombre de tu negocio o entidad"
                 maxlength="120"
             /></label>
             <label for="service"
               >¿En qué podemos ayudarte?<span class="select-wrap"
-                ><select name="service" id="service">
+                ><select
+                  name="service"
+                  id="service"
+                  toolparamdescription="Tipo de proyecto. Si no está claro, elige Necesito orientación."
+                >
                   <option>Software a medida</option>
                   <option>Web y comercio digital</option>
                   <option>Integración o evolución</option>
@@ -954,6 +988,7 @@
               >¿Qué necesitas resolver?<textarea
                 id="message"
                 name="message"
+                toolparamdescription="Qué necesita resolver, quién lo usará, en qué punto está, herramientas actuales y, si los conoce, plazos y presupuesto orientativo."
                 rows="4"
                 placeholder="Qué necesitas, quién lo utilizará y en qué punto está el proyecto…"
                 required
