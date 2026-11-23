@@ -409,25 +409,25 @@ main {
     visibility: visible;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-ink {
-    animation: intro-ink-lift 0.65s 0.35s cubic-bezier(0.76, 0, 0.24, 1) both;
+    animation: intro-ink-lift 1.43s 1.29s cubic-bezier(0.76, 0, 0.24, 1) both;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-lime {
-    animation: intro-lime-lift 0.7s 0.5s cubic-bezier(0.76, 0, 0.24, 1) both;
+    animation: intro-lime-lift 1.5s 1.5s cubic-bezier(0.76, 0, 0.24, 1) both;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-brand {
-    animation: intro-brand-away 0.3s 0.4s ease both;
+    animation: intro-brand-away 0.64s 1.36s ease both;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-piece-one {
-    animation: intro-piece-one 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: intro-piece-one 1.21s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-piece-two {
-    animation: intro-piece-two 0.5s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: intro-piece-two 1.21s 0.11s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-word > span {
-    animation: intro-word 0.5s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: intro-word 1.14s 0.23s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-entering:not(.page-about) .curtain-rule {
-    animation: grow-line 0.5s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: grow-line 1.14s 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .motion-ready.page-leaving .curtain-layer {
     animation: curtain-exit 0.45s cubic-bezier(0.76, 0, 0.24, 1) both;
@@ -863,27 +863,43 @@ main {
     text-align: left;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  html:not(.motion-force) *,
+  html:not(.motion-force) *::before,
+  html:not(.motion-force) *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html:not(.motion-force) .will-reveal {
+    opacity: 1;
+    transform: none;
+  }
+  html:not(.motion-force) .system-canvas {
+    transform: none;
+  }
+}
+
 /* Conócenos: editorial entrance, distinct from the home brand curtain. */
 .motion-ready.page-about .hero-copy > * {
   animation: none;
 }
 .motion-ready.page-about .hero-copy > .eyebrow {
-  animation: about-intro-copy 0.5s 0.05s ease both;
+  animation: about-intro-copy 0.8s 0.05s ease both;
 }
 .motion-ready.page-about .about-title-line > span {
-  animation: about-intro-line 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: about-intro-line 1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .motion-ready.page-about .about-title-line:nth-child(2) > span {
-  animation-delay: 0.2s;
+  animation-delay: 0.35s;
 }
 .motion-ready.page-about .about-title-line:nth-child(3) > span {
-  animation-delay: 0.3s;
+  animation-delay: 0.55s;
 }
 .motion-ready.page-about .hero-copy > .hero-description {
-  animation: about-intro-copy 0.5s 0.4s ease both;
+  animation: about-intro-copy 0.9s 0.65s ease both;
 }
 .motion-ready.page-about .about-emblem {
-  animation: about-intro-emblem 0.7s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: about-intro-emblem 1.35s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @keyframes about-intro-line {
   from {
@@ -979,52 +995,3 @@ main {
 }
 @keyframes page-dissolve-out { to { opacity: 0; } }
 @keyframes page-dissolve-in { from { opacity: 0; } }
-
-/* Motion controls remain reachable without covering the contact shortcut. */
-.motion-toggle {
-  position: fixed;
-  left: 16px;
-  bottom: 20px;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 12px 16px;
-  border: 1px solid #687263;
-  border-radius: 30px;
-  background: #171a17;
-  color: #f5f7f0;
-  box-shadow: 0 3px 16px #0002;
-  font-size: .875rem;
-}
-.motion-toggle:disabled { cursor: default; }
-.motion-toggle-icon { display: block; width: 12px; height: 14px; border-inline: 4px solid currentColor; }
-.motion-reduced .motion-toggle-icon { border: 0; border-left: 12px solid currentColor; border-block: 7px solid transparent; }
-.motion-toggle:disabled .motion-toggle-icon { width: 12px; height: 12px; background: currentColor; border: 0; }
-@media (max-width: 699px) {
-  .motion-toggle { padding: 14px; bottom: 16px; }
-  .motion-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-}
-html.motion-reduced { scroll-behavior: auto; }
-html.motion-reduced *, html.motion-reduced *::before, html.motion-reduced *::after {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
-}
-html.motion-reduced .will-reveal { opacity: 1; transform: none; }
-html.motion-reduced .system-canvas, html.motion-reduced .founder-card:hover { transform: none; }
-html.motion-reduced .page-curtain { display: none; }
-html.motion-reduced::view-transition-group(*),
-html.motion-reduced::view-transition-old(*),
-html.motion-reduced::view-transition-new(*) { animation: none !important; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  html *, html *::before, html *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  html .will-reveal { opacity: 1; transform: none; }
-  html .page-curtain { display: none; }
-  html::view-transition-group(*), html::view-transition-old(*), html::view-transition-new(*) { animation: none !important; }
-}
-
-@media print { .motion-toggle, .reading-progress, .page-curtain { display: none; } }

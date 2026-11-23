@@ -56,14 +56,12 @@ Conexión de herramientas existentes para no duplicar datos y automatizar tareas
 - Revisión de la documentación, las APIs y las opciones de exportación disponibles.
 - Propuesta de qué conectar, automatizar o ampliar y cómo comprobar el resultado.
 
-## Experiencia del equipo
+## Para quién trabaja
 
-Los siguientes trabajos pertenecen al recorrido de Alejandro y Gonzalo. Se presentan de forma anónima; no se identifican clientes, centros ni ubicaciones de hospitales. Las ilustraciones de la web no son capturas de los proyectos.
-
-- Empresas privadas y autónomos: plataformas desarrolladas para distintas actividades.
-- Clubes y asociaciones: webs para presentar su actividad y acercarla a sus comunidades.
-- Educación: programas educativos que se utilizan en aulas de Castilla y León.
-- Hospitales: sistemas informáticos en uso, con experiencia del equipo en desarrollo e implantación de software a medida en hospitales públicos.
+- Particulares y profesionales: webs para profesionales independientes, despachos y estudios.
+- Empresas privadas: presencia online y herramientas de gestión para empresas, comercios y hostelería.
+- Sector público: experiencia en desarrollo e implantación de software a medida en hospitales públicos. También valora proyectos y licitaciones de organismos públicos según su alcance, sus requisitos y la capacidad del equipo.
+- Clubes y asociaciones: webs y plataformas para dar visibilidad a su actividad y organizar recursos para sus miembros.
 
 ## Preguntas frecuentes
 

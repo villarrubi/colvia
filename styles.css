@@ -2407,4 +2407,3 @@ dialog::backdrop {
 
 .footer-bottom { flex-wrap: wrap; gap: 12px 24px; }
 .sitemap-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
