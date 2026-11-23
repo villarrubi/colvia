@@ -168,11 +168,14 @@ addEventListener("resize", updateProgress);
 document.addEventListener("toggle", updateProgress, true);
 updateProgress();
 
-// Keep Conócenos' editorial entrance when following a link. Only the home
-// brand introduction is skipped on internal navigation; history skips both.
+// Direct visits keep their introductions. Internal navigation uses one shared
+// transition instead of stacking a page fade and another hero introduction.
 // The one-use marker also works when the browser omits the referrer.
 const navigationKey = "colvia-internal-navigation";
 const navigationEntry = performance.getEntriesByType("navigation")[0];
+const nativePageTransitions = typeof CSSViewTransitionRule !== "undefined";
+const alreadyPainted =
+  performance.getEntriesByName("first-contentful-paint").length > 0;
 let internalArrival = false;
 try {
   const previous = JSON.parse(sessionStorage.getItem(navigationKey) || "null");
@@ -193,12 +196,12 @@ internalArrival ||=
 const skipEntrance =
   // If rendering already started (unsupported render blocking or its timeout),
   // do not hide visible content just to replay an entrance.
-  performance.getEntriesByName("first-contentful-paint").length > 0 ||
+  alreadyPainted ||
   navigationEntry?.type === "back_forward" ||
-  (navigationEntry?.type !== "reload" && internalArrival && !isAboutPage) ||
+  (navigationEntry?.type !== "reload" && internalArrival) ||
   Boolean(location.hash && location.hash !== "#inicio");
 
-// Only unmodified clicks to another local page get a brief fade.
+// The curtain is reserved for direct visits to the homepage.
 const pageCurtain = document.createElement("div");
 pageCurtain.className = "page-curtain";
 pageCurtain.setAttribute("aria-hidden", "true");
@@ -221,17 +224,27 @@ document.body.append(pageCurtain);
 let navigating = false;
 let navigationTimer;
 let entranceTimer;
-function enterPage(skip = false) {
+function enterPage(skip = false, transition = false) {
   clearTimeout(navigationTimer);
   clearTimeout(entranceTimer);
   navigating = false;
-  motionRoot.classList.remove("page-leaving", "page-entering", "page-to-about");
+  motionRoot.classList.remove("page-leaving", "page-entering", "page-arriving");
   motionRoot.classList.toggle("page-return", skip);
   motionRoot.style.setProperty(
     "--hero-entry-offset",
     isAboutPage || skip ? "0s" : "1.7s",
   );
-  if (skip) return;
+  if (skip) {
+    if (
+      transition && !nativePageTransitions && !alreadyPainted && !location.hash
+    ) {
+      motionRoot.classList.add("page-arriving");
+      entranceTimer = setTimeout(
+        () => motionRoot.classList.remove("page-arriving"), 500,
+      );
+    }
+    return;
+  }
   motionRoot.classList.add("page-entering");
   entranceTimer = setTimeout(
     () => motionRoot.classList.remove("page-entering"),
@@ -252,7 +265,7 @@ document
       motionRoot.classList.remove("page-entering");
     }
   });
-enterPage(skipEntrance);
+enterPage(skipEntrance, internalArrival && navigationEntry?.type === "navigate");
 addEventListener("pageshow", (event) => {
   if (event.persisted) enterPage(true);
 });
@@ -281,8 +294,10 @@ document.addEventListener("click", (event) => {
     return;
   const normalize = (path) => path.replace(/index\.html$/, "");
   if (normalize(destination.pathname) === normalize(location.pathname)) return;
-  event.preventDefault();
-  if (navigating) return;
+  if (navigating) {
+    event.preventDefault();
+    return;
+  }
   navigating = true;
   try {
     sessionStorage.setItem(
@@ -292,10 +307,12 @@ document.addEventListener("click", (event) => {
   } catch {
     /* Referrer and history detection remain available. */
   }
+  // Let the browser keep the old page visible until the new one is ready,
+  // then crossfade their snapshots. There is no extra navigation delay.
+  if (nativePageTransitions) return;
+  event.preventDefault();
   clearTimeout(entranceTimer);
-  motionRoot.classList.remove("page-entering");
-  const goingToAbout = destination.pathname.endsWith("/conocenos.html");
-  motionRoot.classList.toggle("page-to-about", goingToAbout);
+  motionRoot.classList.remove("page-entering", "page-arriving");
   motionRoot.classList.add("page-leaving");
-  navigationTimer = setTimeout(() => location.assign(destination.href), 160);
+  navigationTimer = setTimeout(() => location.assign(destination.href), 240);
 });
