@@ -191,6 +191,9 @@ internalArrival ||=
   referrer?.origin === location.origin &&
   localPages.includes(referrer.pathname);
 const skipEntrance =
+  // If rendering already started (unsupported render blocking or its timeout),
+  // do not hide visible content just to replay an entrance.
+  performance.getEntriesByName("first-contentful-paint").length > 0 ||
   navigationEntry?.type === "back_forward" ||
   (navigationEntry?.type !== "reload" && internalArrival && !isAboutPage) ||
   Boolean(location.hash && location.hash !== "#inicio");

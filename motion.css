@@ -947,6 +947,7 @@ main {
 /* Internal links and history keep the content immediately available. */
 .motion-ready.page-return .hero-copy > *,
 .motion-ready.page-about.page-return .hero-copy > *,
+.motion-ready.page-return .hero-visual,
 .motion-ready.page-return .about-title-line > span,
 .motion-ready.page-return .about-emblem {
   animation: none;
